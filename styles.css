@@ -1495,6 +1495,17 @@ h3 {
   outline: 2px solid rgba(45, 212, 191, 0.5);
 }
 
+.form-status {
+  min-height: 18px;
+  font-size: 13px;
+  color: var(--soft);
+  margin: 0;
+}
+
+.form-status.is-error {
+  color: #f87171;
+}
+
 @media (max-width: 1080px) {
   .compact-points-grid {
     grid-template-columns: 1fr;

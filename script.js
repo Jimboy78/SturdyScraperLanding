@@ -115,3 +115,39 @@ steps.forEach((button) => {
 let autoStep = 0;
 startDemoRotation();
 setDemoStep(0);
+
+const WAITLIST_ENDPOINT = "https://sturdy-scraper-license-worker.martiniseba78.workers.dev/waitlist";
+const waitlistForm = document.querySelector("#waitlist-form");
+const waitlistStatus = document.querySelector("[data-form-status]");
+
+waitlistForm?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const submitButton = waitlistForm.querySelector("button[type='submit']");
+  const email = waitlistForm.email.value.trim();
+  const useCase = waitlistForm.use_case.value.trim();
+
+  if (waitlistStatus) {
+    waitlistStatus.textContent = "Enviando...";
+    waitlistStatus.classList.remove("is-error");
+  }
+  submitButton?.setAttribute("disabled", "true");
+
+  try {
+    const res = await fetch(WAITLIST_ENDPOINT, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ email, use_case: useCase }),
+    });
+    if (!res.ok) throw new Error(`status ${res.status}`);
+    waitlistForm.reset();
+    if (waitlistStatus) waitlistStatus.textContent = "Listo, te vamos a escribir pronto.";
+  } catch (err) {
+    if (waitlistStatus) {
+      waitlistStatus.textContent =
+        "No se pudo enviar. Escribinos directo a support@sturdyscraper.com.";
+      waitlistStatus.classList.add("is-error");
+    }
+  } finally {
+    submitButton?.removeAttribute("disabled");
+  }
+});
