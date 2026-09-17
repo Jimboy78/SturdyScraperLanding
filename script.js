@@ -119,18 +119,52 @@ setDemoStep(0);
 const WAITLIST_ENDPOINT = "https://sturdy-scraper-license-worker.martiniseba78.workers.dev/waitlist";
 const waitlistForm = document.querySelector("#waitlist-form");
 const waitlistStatus = document.querySelector("[data-form-status]");
+const waitlistFields = document.querySelector("[data-signup-fields]");
+const waitlistSuccess = document.querySelector("[data-signup-success]");
+const waitlistResetButton = document.querySelector("[data-signup-reset]");
+const submitButton = document.querySelector("[data-submit-button]");
+const submitButtonLabel = document.querySelector("[data-button-label]");
+
+function setSubmitting(isSubmitting) {
+  if (!submitButton) return;
+  submitButton.classList.toggle("is-loading", isSubmitting);
+  submitButton.disabled = isSubmitting;
+  if (submitButtonLabel) {
+    submitButtonLabel.textContent = isSubmitting ? "Enviando..." : "Pedir acceso";
+  }
+}
+
+function setFieldsInvalid(isInvalid) {
+  waitlistForm?.classList.toggle("has-error", isInvalid);
+}
+
+function showStatus(message, tone) {
+  if (!waitlistStatus) return;
+  waitlistStatus.textContent = message;
+  waitlistStatus.classList.remove("is-error", "is-visible");
+  if (message) {
+    if (tone === "error") waitlistStatus.classList.add("is-error");
+    // Reflow so the fade-in transition retriggers on repeated errors.
+    void waitlistStatus.offsetWidth;
+    waitlistStatus.classList.add("is-visible");
+  }
+}
 
 waitlistForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const submitButton = waitlistForm.querySelector("button[type='submit']");
   const email = waitlistForm.email.value.trim();
   const useCase = waitlistForm.use_case.value.trim();
 
-  if (waitlistStatus) {
-    waitlistStatus.textContent = "Enviando...";
-    waitlistStatus.classList.remove("is-error");
+  if (!email || !waitlistForm.email.checkValidity()) {
+    setFieldsInvalid(true);
+    showStatus("Poné un email válido para seguir.", "error");
+    waitlistForm.email.focus();
+    return;
   }
-  submitButton?.setAttribute("disabled", "true");
+  setFieldsInvalid(false);
+
+  setSubmitting(true);
+  showStatus("", null);
 
   try {
     const res = await fetch(WAITLIST_ENDPOINT, {
@@ -139,15 +173,34 @@ waitlistForm?.addEventListener("submit", async (event) => {
       body: JSON.stringify({ email, use_case: useCase }),
     });
     if (!res.ok) throw new Error(`status ${res.status}`);
+
     waitlistForm.reset();
-    if (waitlistStatus) waitlistStatus.textContent = "Listo, te vamos a escribir pronto.";
-  } catch (err) {
-    if (waitlistStatus) {
-      waitlistStatus.textContent =
-        "No se pudo enviar. Escribinos directo a support@sturdyscraper.com.";
-      waitlistStatus.classList.add("is-error");
+    if (waitlistFields && waitlistSuccess) {
+      waitlistFields.hidden = true;
+      waitlistSuccess.hidden = false;
+      requestAnimationFrame(() => waitlistSuccess.classList.add("is-visible"));
     }
+  } catch (err) {
+    showStatus(
+      "No se pudo enviar. Escribinos directo a support@sturdyscraper.com.",
+      "error",
+    );
   } finally {
-    submitButton?.removeAttribute("disabled");
+    setSubmitting(false);
   }
+});
+
+waitlistForm?.querySelectorAll("input").forEach((input) => {
+  input.addEventListener("input", () => {
+    setFieldsInvalid(false);
+    showStatus("", null);
+  });
+});
+
+waitlistResetButton?.addEventListener("click", () => {
+  if (!waitlistFields || !waitlistSuccess) return;
+  waitlistSuccess.classList.remove("is-visible");
+  waitlistSuccess.hidden = true;
+  waitlistFields.hidden = false;
+  waitlistForm.email.focus();
 });
