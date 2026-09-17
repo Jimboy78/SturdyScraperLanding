@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recover your license key | Sturdy Scraper</title>
+    <meta name="robots" content="noindex" />
+    <link rel="alternate" hreflang="es" href="https://sturdyscraper.com/recuperar-licencia" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" />
+    <link rel="stylesheet" href="/styles.css?v=20260917c" />
+    <style>
+      .recover-form{display:grid;gap:.75rem;max-width:420px;margin:1.5rem 0}
+      .recover-form label{display:grid;gap:.35rem;font-weight:600}
+      .recover-msg{padding:.75rem 1rem;border-radius:10px;margin:1rem 0;max-width:520px}
+      .recover-msg.ok{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.5)}
+      .recover-msg.err{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.5)}
+    </style>
+  </head>
+  <body class="legal-page">
+    <header class="legal-header">
+      <a class="brand" href="/en/">
+        <img src="/logo-56.webp" alt="" width="28" height="28" />
+        <span>Sturdy Scraper</span>
+      </a>
+      <nav aria-label="Navigation">
+        <a href="/en/">Home</a>
+        <a href="mailto:support@sturdyscraper.com">Contact</a>
+        <a href="/recuperar-licencia" hreflang="es" lang="es">ES</a>
+      </nav>
+    </header>
+
+    <main class="legal-container">
+      <p class="eyebrow">Pro plan</p>
+      <h1>Recover your license key</h1>
+      <p>Enter the email you paid with and we'll resend the key to that same address. It's never shown on screen or sent anywhere else.</p>
+
+      <form class="recover-form" id="recover" novalidate>
+        <label>Purchase email
+          <input type="email" name="email" autocomplete="email" required placeholder="you@email.com" />
+        </label>
+        <button class="button primary" type="submit">Resend my key</button>
+      </form>
+      <div id="recover-msg" class="recover-msg" role="status" hidden></div>
+
+      <section>
+        <h2>Not arriving?</h2>
+        <p>If 15 minutes go by and it isn't in spam either, email <a href="mailto:support@sturdyscraper.com">support@sturdyscraper.com</a> from your purchase email.</p>
+      </section>
+    </main>
+    <script>
+      (() => {
+        const form = document.getElementById('recover');
+        const msg = document.getElementById('recover-msg');
+        const button = form.querySelector('button');
+        const show = (kind, text) => { msg.hidden = false; msg.className = 'recover-msg ' + kind; msg.textContent = text; };
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = form.email.value.trim();
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return show('err', "Check the email: it doesn't look valid.");
+          button.disabled = true;
+          button.textContent = 'Sending…';
+          try {
+            const res = await fetch('https://sturdy-scraper-license-worker.martiniseba78.workers.dev/recover', {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({ email, lang: 'en' }),
+            });
+            if (res.status === 400) show('err', "Check the email: it doesn't look valid.");
+            else if (!res.ok) show('err', "We couldn't connect. Try again in a moment or email support@sturdyscraper.com.");
+            else { show('ok', 'Done. If that email has an active Pro subscription, the key will arrive in a few minutes. Check spam or promotions.'); form.reset(); }
+          } catch {
+            show('err', "We couldn't connect. Try again in a moment or email support@sturdyscraper.com.");
+          } finally {
+            button.disabled = false;
+            button.textContent = 'Resend my key';
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
