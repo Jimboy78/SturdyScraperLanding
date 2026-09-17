@@ -23,7 +23,7 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:locale:alternate" content="es_AR" />
     <meta property="og:url" content="https://sturdyscraper.com/en/" />
-    <meta property="og:image" content="https://sturdyscraper.com/og-image.png" />
+    <meta property="og:image" content="https://sturdyscraper.com/og-image-en.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -32,7 +32,7 @@
       name="twitter:description"
       content="Local scraping in your browser, big CSV exports without crashes and alerts before you export empty tables."
     />
-    <meta name="twitter:image" content="https://sturdyscraper.com/og-image.png" />
+    <meta name="twitter:image" content="https://sturdyscraper.com/og-image-en.png" />
     <link rel="icon" href="/favicon.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href="/styles.css?v=20260917c" as="style" />
@@ -43,14 +43,14 @@
         "@type": "SoftwareApplication",
         "name": "Sturdy Scraper",
         "url": "https://sturdyscraper.com/en/",
-        "inLanguage": "en",
+        "inLanguage": ["en", "es"],
         "applicationCategory": "BrowserApplication",
         "operatingSystem": "Chrome",
         "screenshot": [
-          "https://sturdyscraper.com/img/detectar-elementos-1280.webp",
-          "https://sturdyscraper.com/img/elegir-campos-1280.webp",
-          "https://sturdyscraper.com/img/paginacion-1280.webp",
-          "https://sturdyscraper.com/img/export-1280.webp"
+          "https://sturdyscraper.com/img/en/detect-similar-items-1280.webp",
+          "https://sturdyscraper.com/img/en/pick-fields-1280.webp",
+          "https://sturdyscraper.com/img/en/pagination-1280.webp",
+          "https://sturdyscraper.com/img/en/export-data-1280.webp"
         ],
         "description": "No-code web scraper Chrome extension with reliable dynamic pagination, streaming exports and broken selector alerts.",
         "offers": [
@@ -99,6 +99,11 @@
             "@type": "Question",
             "name": "Is it a tool for developers?",
             "acceptedAnswer": { "@type": "Answer", "text": "Not mainly. It's built for people who need reliable CSVs without writing CSS, XPath or scripts." }
+          },
+          {
+            "@type": "Question",
+            "name": "What languages is the extension available in?",
+            "acceptedAnswer": { "@type": "Answer", "text": "English and Spanish. It follows your Chrome language automatically: the side panel, notifications, suggested column names and the checkout all switch together." }
           }
         ]
       }
@@ -449,30 +454,30 @@
           <p class="eyebrow">Real screenshots</p>
           <h2>This is the extension at work.</h2>
           <p class="section-intro">
-            Chrome's side panel scraping a demo store, unedited. Captured from the Spanish interface.
+            Chrome's side panel scraping a demo store, unedited.
           </p>
         </div>
         <div class="shots-grid">
           <figure class="shot">
-            <img src="/img/detectar-elementos-640.webp" srcset="/img/detectar-elementos-640.webp 640w, /img/detectar-elementos-1280.webp 1280w"
+            <img src="/img/en/detect-similar-items-640.webp" srcset="/img/en/detect-similar-items-640.webp 640w, /img/en/detect-similar-items-1280.webp 1280w"
               sizes="(max-width: 720px) 88vw, 560px" width="1280" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto"
               alt="One click on a product card and the extension detects the 12 similar products on the page" />
             <figcaption>One click on a card and it detects the 12 similar products on the page</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/img/elegir-campos-640.webp" srcset="/img/elegir-campos-640.webp 640w, /img/elegir-campos-1280.webp 1280w"
+            <img src="/img/en/pick-fields-640.webp" srcset="/img/en/pick-fields-640.webp 640w, /img/en/pick-fields-1280.webp 1280w"
               sizes="(max-width: 720px) 88vw, 560px" width="1280" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto"
               alt="Pick fields with clicks and see a live data preview" />
             <figcaption>Pick fields with clicks and see the data preview instantly</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/img/paginacion-640.webp" srcset="/img/paginacion-640.webp 640w, /img/paginacion-1280.webp 1280w"
+            <img src="/img/en/pagination-640.webp" srcset="/img/en/pagination-640.webp 640w, /img/en/pagination-1280.webp 1280w"
               sizes="(max-width: 720px) 88vw, 560px" width="1280" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto"
               alt="Pagination options: infinite scroll, load more button or next pages" />
             <figcaption>Pagination with infinite scroll, a "Load more" button or next pages</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/img/export-640.webp" srcset="/img/export-640.webp 640w, /img/export-1280.webp 1280w"
+            <img src="/img/en/export-data-640.webp" srcset="/img/en/export-data-640.webp 640w, /img/en/export-data-1280.webp 1280w"
               sizes="(max-width: 720px) 88vw, 560px" width="1280" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto"
               alt="Finished scrape with 60 rows from 5 pages ready to export to CSV, JSON or NDJSON" />
             <figcaption>Done: 60 rows from 5 pages, ready to export to CSV, JSON or NDJSON</figcaption>
@@ -648,6 +653,13 @@
           <details>
             <summary>Is it a tool for developers?</summary>
             <p>Not mainly. It's built for people who need reliable CSVs without writing CSS, XPath or scripts.</p>
+          </details>
+          <details>
+            <summary>What languages is the extension available in?</summary>
+            <p>
+              English and Spanish. It follows your Chrome language automatically: the side panel, notifications,
+              suggested column names and the checkout all switch together.
+            </p>
           </details>
         </div>
       </section>
