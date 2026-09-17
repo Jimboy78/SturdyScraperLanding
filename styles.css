@@ -2197,3 +2197,9 @@ h3 {
   font-weight: 600;
   letter-spacing: 0.04em;
 }
+
+/* Etiquetas de la demo en inglés */
+html[lang="en"] .demo-board.state-context .mock-inspector::before { content: "Context detected"; }
+html[lang="en"] .demo-board.state-fields .mock-inspector::before { content: "Fields selected"; }
+html[lang="en"] .demo-board.state-pagination .mock-inspector::before { content: "Pagination detected"; }
+html[lang="en"] .demo-board.state-export .mock-inspector::before { content: "Ready to export"; }
