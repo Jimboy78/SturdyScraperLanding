@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alternativa a Web Scraper (webscraper.io) para sitios dinámicos | Sturdy Scraper</title>
+    <meta name="description" content="Comparativa honesta entre Web Scraper y Sturdy Scraper: paginación dinámica, exports grandes sin cuelgues, alertas de selector roto y precio. Cuándo conviene cada uno." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://sturdyscraper.com/alternativa-web-scraper" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Alternativa a Web Scraper (webscraper.io) para sitios dinámicos | Sturdy Scraper" />
+    <meta property="og:description" content="Comparativa honesta entre Web Scraper y Sturdy Scraper: paginación dinámica, exports grandes sin cuelgues, alertas de selector roto y precio. Cuándo conviene cada uno." />
+    <meta property="og:url" content="https://sturdyscraper.com/alternativa-web-scraper" />
+    <meta property="og:image" content="https://sturdyscraper.com/og-image.png" />
+    <meta property="og:locale" content="es_AR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Sturdy Scraper es gratis como Web Scraper?", "acceptedAnswer": {"@type": "Answer", "text": "Tiene un plan Free sin tarjeta con 200 filas por scrape, suficiente para validar si te sirve. Pro cuesta USD 9 por mes o USD 79 por año y quita el límite de filas."}}, {"@type": "Question", "name": "¿Mis datos scrapeados pasan por algún servidor?", "acceptedAnswer": {"@type": "Answer", "text": "No. El scraping y el almacenamiento ocurren en tu navegador. El único contacto con un servidor es validar la licencia Pro (email y clave), nunca el contenido que extraés."}}, {"@type": "Question", "name": "¿Puedo migrar lo que armé en Web Scraper?", "acceptedAnswer": {"@type": "Answer", "text": "No hay importador automático. En la práctica rearmar un scraper toma pocos minutos: abrís el sitio, clickeás un elemento de la lista, agregás los campos y elegís la paginación."}}, {"@type": "Question", "name": "¿Funciona con sitios que cargan contenido con JavaScript?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Espera a que aparezca contenido nuevo después de cada click, scroll o cambio de página, y detecta botones como “Siguiente” o “Cargar más” debajo de los resultados."}}]}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Sturdy Scraper", "item": "https://sturdyscraper.com/"}, {"@type": "ListItem", "position": 2, "name": "Alternativa a Web Scraper", "item": "https://sturdyscraper.com/alternativa-web-scraper"}]}]</script>
+    <style>
+      .compare-table{width:100%;border-collapse:collapse;margin:1rem 0}
+      .compare-table th,.compare-table td{text-align:left;vertical-align:top;padding:.7rem .5rem;border-top:1px solid rgba(127,127,127,.25)}
+      .compare-table th{width:34%;font-weight:600}
+      .alt-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}
+      .legal-container details{border-top:1px solid rgba(127,127,127,.25);padding:.8rem 0}
+      .legal-container summary{cursor:pointer;font-weight:600}
+      .alt-note{font-size:.85rem;opacity:.75}
+    </style>
+  </head>
+  <body class="legal-page">
+    <header class="legal-header">
+      <a class="brand" href="/">
+        <img src="/logo.png" alt="" width="28" height="28" />
+        <span>Sturdy Scraper</span>
+      </a>
+      <nav aria-label="Navegación">
+        <a href="/#pricing">Precios</a>
+        <a href="/#faq">Preguntas</a>
+        <a href="mailto:support@sturdyscraper.com">Contacto</a>
+      </nav>
+    </header>
+
+    <main class="legal-container">
+      <p class="eyebrow">Comparativa</p>
+      <h1>Una alternativa a Web Scraper cuando el sitio es dinámico o el export es grande</h1>
+      <p class="legal-date">Actualizado: 17 de septiembre de 2026</p>
+      <p>Web Scraper es una de las extensiones de scraping más usadas y tiene cosas muy buenas: sitemaps potentes y una versión Cloud. Pero hay tres quejas que se repiten en su foro y en las reseñas de Chrome Web Store, y son justo las que Sturdy Scraper resuelve de entrada.</p>
+
+      <section>
+        <h2>Lo que conviene saber de Web Scraper (webscraper.io)</h2>
+        <ul><li>Se configura desde una pestaña de DevTools, con sitemaps y tipos de selector: potente, pero cuesta arrancar.</li><li>Paginación y scroll dinámico con varios mecanismos; en sitios con carga por JavaScript suele requerir prueba y error.</li><li>Con datasets grandes, usuarios reportan que el export se cuelga: la extensión carga los datos guardados en memoria antes de exportar.</li><li>No avisa si un selector dejó de encontrar datos: te enterás al abrir el CSV.</li><li>Ejecución programada y API solo en los planes Cloud pagos.</li></ul>
+      </section>
+
+      <section>
+        <h2>Qué hace distinto Sturdy Scraper</h2>
+        <table class="compare-table"><tbody><tr><th scope="row">Selección de datos</th><td>Point-and-click: clickeás un elemento y detecta la lista completa</td></tr><tr><th scope="row">Paginación</th><td>Botón siguiente, “Cargar más”, scroll infinito y links, con detección automática</td></tr><tr><th scope="row">Exports grandes</th><td>CSV, JSON y NDJSON por streaming a disco desde 5.000 filas: no arma todo en memoria</td></tr><tr><th scope="row">Si el sitio cambia</th><td>Te avisa cuando un selector deja de encontrar datos, antes de exportar una tabla vacía</td></tr><tr><th scope="row">Dónde quedan tus datos</th><td>En tu navegador. No hay servidor que reciba lo que scrapeás</td></tr><tr><th scope="row">Precio</th><td>Free: 200 filas por scrape, sin tarjeta. Pro: USD 9/mes o USD 79/año, filas ilimitadas</td></tr></tbody></table>
+        <div class="alt-cta">
+          <a class="button primary" href="/#waitlist">Pedir acceso anticipado</a>
+          <a class="button secondary" href="/#pricing">Ver precios</a>
+        </div>
+      </section>
+
+      <section>
+        <h2>¿Cuál elegir?</h2>
+        <p><strong>Web Scraper:</strong> Si ya tenés sitemaps armados, necesitás scraping en la nube sin tener el navegador abierto o trabajás con estructuras de navegación muy anidadas, Web Scraper Cloud es una opción sólida.</p>
+        <p><strong>Sturdy Scraper:</strong> Si querés empezar en minutos desde un panel lateral, tus sitios cargan contenido con “Cargar más” o scroll infinito, exportás miles de filas o necesitás saber cuándo un scrape se rompió, Sturdy Scraper es más directo.</p>
+      </section>
+
+      <section id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details><summary>¿Sturdy Scraper es gratis como Web Scraper?</summary><p>Tiene un plan Free sin tarjeta con 200 filas por scrape, suficiente para validar si te sirve. Pro cuesta USD 9 por mes o USD 79 por año y quita el límite de filas.</p></details><details><summary>¿Mis datos scrapeados pasan por algún servidor?</summary><p>No. El scraping y el almacenamiento ocurren en tu navegador. El único contacto con un servidor es validar la licencia Pro (email y clave), nunca el contenido que extraés.</p></details><details><summary>¿Puedo migrar lo que armé en Web Scraper?</summary><p>No hay importador automático. En la práctica rearmar un scraper toma pocos minutos: abrís el sitio, clickeás un elemento de la lista, agregás los campos y elegís la paginación.</p></details><details><summary>¿Funciona con sitios que cargan contenido con JavaScript?</summary><p>Sí. Espera a que aparezca contenido nuevo después de cada click, scroll o cambio de página, y detecta botones como “Siguiente” o “Cargar más” debajo de los resultados.</p></details>
+      </section>
+
+      <section>
+        <h2>Otras comparativas</h2>
+        <p><a href="/alternativa-data-miner">Alternativa a Data Miner</a> · <a href="/alternativa-instant-data-scraper">Alternativa a Instant Data Scraper</a></p>
+        <p class="alt-note">Web Scraper (webscraper.io) es una marca de sus respectivos dueños. Sturdy Scraper no está afiliado ni respaldado por ellos. La información sale de su documentación pública, su listing en Chrome Web Store y reseñas de usuarios; si algo cambió, escribinos a support@sturdyscraper.com y lo corregimos.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Sturdy Scraper</strong>
+        <span>Web scraping local-first para Chrome.</span>
+        <span>Hecho por Sebastián Martini · Argentina</span>
+      </div>
+      <nav aria-label="Footer">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/refund-policy">Refunds</a>
+        <a href="mailto:support@sturdyscraper.com">Contact</a>
+      </nav>
+    </footer>
+  </body>
+</html>
