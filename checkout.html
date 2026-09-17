@@ -126,12 +126,26 @@
         });
       }
 
+      // Embudo anónimo para el panel: solo el nombre del evento, sin email ni datos del pago.
+      function track(name) {
+        try {
+          navigator.sendBeacon('https://sturdy-scraper-license-worker.martiniseba78.workers.dev/event', JSON.stringify({ name }));
+        } catch (e) {}
+      }
+      track('checkout_view');
+      let completed = false;
+      const FUNNEL = { 'checkout.loaded': 'checkout_loaded', 'checkout.payment.initiated': 'payment_started', 'checkout.completed': 'completed', 'checkout.error': 'error' };
+
       try {
         if (window.Paddle && !PADDLE_CLIENT_TOKEN.startsWith('PEGAR')) {
           Paddle.Initialize({
             token: PADDLE_CLIENT_TOKEN,
             eventCallback: (ev) => {
-              if (ev && ev.name === 'checkout.error') {
+              if (!ev) return;
+              if (FUNNEL[ev.name]) track(FUNNEL[ev.name]);
+              if (ev.name === 'checkout.completed') completed = true;
+              if (ev.name === 'checkout.closed' && !completed) track('closed');
+              if (ev.name === 'checkout.error') {
                 showError(T.paddleError);
               }
             },
