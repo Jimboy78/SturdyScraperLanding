@@ -52,7 +52,7 @@
     <script>
       // Token del lado cliente de Paddle (Developer tools → Authentication → client-side token).
       // Es público por diseño (solo sirve para abrir el checkout), pero lo carga el dueño de la cuenta.
-      const PADDLE_CLIENT_TOKEN = 'PEGAR_CLIENT_TOKEN_DE_PADDLE';
+      const PADDLE_CLIENT_TOKEN = 'live_8f4f09a39f83072e341410b26c2';
       const PLANS = {
         monthly: { priceId: 'pri_01kyx6prke3rm228e11snntv4h', label: 'USD 9 por mes' },
         yearly: { priceId: 'pri_01kyx6xrycvhgh0793sa8qccph', label: 'USD 79 por año (ahorrás 27%)' },
@@ -94,7 +94,17 @@
 
       try {
         if (window.Paddle && !PADDLE_CLIENT_TOKEN.startsWith('PEGAR')) {
-          Paddle.Initialize({ token: PADDLE_CLIENT_TOKEN });
+          Paddle.Initialize({
+            token: PADDLE_CLIENT_TOKEN,
+            eventCallback: (ev) => {
+              if (ev && ev.name === 'checkout.error') {
+                showError(
+                  'Paddle no pudo abrir el pago. Probá de nuevo en unos minutos o escribinos a ' +
+                    '<a href="mailto:support@sturdyscraper.com">support@sturdyscraper.com</a>.',
+                );
+              }
+            },
+          });
           document.getElementById('title').textContent = 'Checkout de Sturdy Scraper Pro';
         }
       } catch (e) {
