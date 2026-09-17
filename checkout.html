@@ -62,8 +62,10 @@
       const planKey = params.get('plan') === 'yearly' ? 'yearly' : 'monthly';
       const plan = PLANS[planKey];
       const other = planKey === 'yearly' ? 'monthly' : 'yearly';
-      document.getElementById('plan-line').textContent = 'Plan elegido: ' + plan.label;
-      document.getElementById('switch').href = '?plan=' + other;
+      // Cupón opcional: /checkout?plan=monthly&discount=CODIGO
+      const discountCode = (params.get('discount') || '').trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 32);
+      document.getElementById('plan-line').textContent = 'Plan elegido: ' + plan.label + (discountCode ? ' · cupón ' + discountCode : '');
+      document.getElementById('switch').href = '?plan=' + other + (discountCode ? '&discount=' + encodeURIComponent(discountCode) : '');
       document.getElementById('switch').textContent =
         other === 'yearly' ? 'Prefiero el plan anual' : 'Prefiero el plan mensual';
 
@@ -84,6 +86,7 @@
         }
         Paddle.Checkout.open({
           items: [{ priceId: plan.priceId, quantity: 1 }],
+          ...(discountCode ? { discountCode } : {}),
           settings: {
             displayMode: 'overlay',
             locale: 'es',
