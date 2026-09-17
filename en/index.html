@@ -72,41 +72,75 @@
     </script>
     <script type="application/ld+json">
       {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Does my scraped data go through a server?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. Scraped data is processed and stored locally in your browser. The only thing that leaves your browser is the Pro license check (email and license key), never the data you scrape." }
-          },
-          {
-            "@type": "Question",
-            "name": "Does it work on sites with infinite scroll?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The extension detects infinite scroll and waits for real DOM changes instead of a fixed delay picked by hand." }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I use it on e-commerce sites and marketplaces?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes, especially for listings and pages that load content when you scroll or change filters. Pagination detection adapts to how each site actually loads results. Only scrape data you are allowed to, following each site's terms." }
-          },
-          {
-            "@type": "Question",
-            "name": "What happens if the site's HTML changes?",
-            "acceptedAnswer": { "@type": "Answer", "text": "A health check compares match rates against a baseline. If a selector breaks, you get a warning before the run or when the job finishes." }
-          },
-          {
-            "@type": "Question",
-            "name": "Is it a tool for developers?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Not mainly. It's built for people who need reliable CSVs without writing CSS, XPath or scripts." }
-          },
-          {
-            "@type": "Question",
-            "name": "What languages is the extension available in?",
-            "acceptedAnswer": { "@type": "Answer", "text": "English and Spanish. It follows your Chrome language automatically: the side panel, notifications, suggested column names and the checkout all switch together." }
-          }
-        ]
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does my scraped data go through a server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Scraped data is processed and stored locally in your browser. The only thing that leaves your browser is the Pro license check (email and license key), never the data you scrape."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on sites with infinite scroll?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The extension detects infinite scroll and waits for real DOM changes instead of a fixed delay picked by hand."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use it on e-commerce sites and marketplaces?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, especially for listings and pages that load content when you scroll or change filters. Pagination detection adapts to how each site actually loads results. Only scrape data you are allowed to, following each site's terms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the site's HTML changes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A health check compares match rates against a baseline. If a selector breaks, you get a warning before the run or when the job finishes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on sites built with Web Components (Shadow DOM)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, when the Shadow DOM is open (the most common case): you pick fields inside a component with a click, same as on any other page."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I lose rows if the list shows two identical items?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. If the page shows two identical items, both are exported. Only items read again while scrolling or loading more are skipped, so you don't get false duplicates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it a tool for developers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not mainly. It's built for people who need reliable CSVs without writing CSS, XPath or scripts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What languages is the extension available in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "English and Spanish. It follows your Chrome language automatically: the side panel, notifications, suggested column names and the checkout all switch together."
+      }
+    }
+  ]
+}
     </script>
   </head>
   <body>
@@ -648,6 +682,18 @@
             <p>
               A health check compares match rates against a baseline. If a selector breaks, you get a
               warning before the run or when the job finishes.
+            </p>
+          </details>
+          <details>
+            <summary>Does it work on sites built with Web Components (Shadow DOM)?</summary>
+            <p>
+              Yes, when the Shadow DOM is open (the most common case): you pick fields inside a component with a click, same as on any other page.
+            </p>
+          </details>
+          <details>
+            <summary>Will I lose rows if the list shows two identical items?</summary>
+            <p>
+              No. If the page shows two identical items, both are exported. Only items read again while scrolling or loading more are skipped, so you don't get false duplicates.
             </p>
           </details>
           <details>

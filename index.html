@@ -86,6 +86,78 @@
         ]
       }
     </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Mis datos pasan por un servidor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Los datos scrapeados se procesan y guardan localmente en tu navegador. Lo único que sale de tu navegador es la validación de la licencia Pro (email y license key), nunca los datos que scrapeás."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Sirve para sitios con scroll infinito?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí. La extensión detecta scroll infinito y espera mutaciones reales del DOM, no un delay fijo elegido a mano."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Sirve para ecommerce como Amazon, Mercado Libre o marketplaces?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, especialmente para listados y páginas que cargan contenido al hacer scroll o al cambiar filtros. La detección de paginación se adapta al patrón real del sitio. Scrapeá solo datos que tengas permitido usar, según los términos de cada sitio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si cambia el HTML del sitio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El health check compara match rates contra una baseline. Si el selector se rompe, avisa antes de correr o al finalizar el job."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Funciona en sitios hechos con Web Components (Shadow DOM)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sí, si el Shadow DOM es abierto (el caso más común): podés elegir campos que están adentro de un componente con un click, igual que en cualquier otra página."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Pierdo filas si hay dos productos iguales en la lista?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Si la página muestra dos elementos idénticos, se exportan los dos. Lo que se descarta es solo lo que se vuelve a leer al scrollear o al cargar más, así no tenés duplicados falsos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es una herramienta para developers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No principalmente. Está pensada para usuarios que necesitan CSVs confiables sin escribir CSS, XPath ni scripts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿En qué idiomas está la extensión?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Español e inglés. Toma el idioma de tu Chrome automáticamente: el panel, las notificaciones, los nombres de columna sugeridos y el checkout cambian juntos."
+      }
+    }
+  ]
+}
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -667,48 +739,51 @@
         </div>
         <div class="faq-list reveal">
           <details open>
-            <summary>Mis datos pasan por un servidor?</summary>
+            <summary>¿Mis datos pasan por un servidor?</summary>
             <p>
-              No. Los datos scrapeados se procesan y guardan localmente en tu
-              navegador. Lo único que sale de tu navegador es la validación de la licencia Pro (email y license key), nunca los datos que scrapeás.
+              No. Los datos scrapeados se procesan y guardan localmente en tu navegador. Lo único que sale de tu navegador es la validación de la licencia Pro (email y license key), nunca los datos que scrapeás.
             </p>
           </details>
           <details>
-            <summary>Sirve para sitios con scroll infinito?</summary>
+            <summary>¿Sirve para sitios con scroll infinito?</summary>
             <p>
-              Sí. La extensión detecta scroll infinito y espera mutaciones
-              reales del DOM, no un delay fijo elegido a mano.
+              Sí. La extensión detecta scroll infinito y espera mutaciones reales del DOM, no un delay fijo elegido a mano.
             </p>
           </details>
           <details>
-            <summary>
-              Sirve para ecommerce como Amazon, Mercado Libre o marketplaces?
-            </summary>
+            <summary>¿Sirve para ecommerce como Amazon, Mercado Libre o marketplaces?</summary>
             <p>
-              Sí, especialmente para listados y páginas que cargan contenido al
-              hacer scroll o al cambiar filtros. La detección de paginación se
-              adapta al patrón real del sitio.
+              Sí, especialmente para listados y páginas que cargan contenido al hacer scroll o al cambiar filtros. La detección de paginación se adapta al patrón real del sitio. Scrapeá solo datos que tengas permitido usar, según los términos de cada sitio.
             </p>
           </details>
           <details>
-            <summary>Que pasa si cambia el HTML del sitio?</summary>
+            <summary>¿Qué pasa si cambia el HTML del sitio?</summary>
             <p>
-              El health check compara match rates contra una baseline. Si el
-              selector se rompe, avisa antes de correr o al finalizar el job.
+              El health check compara match rates contra una baseline. Si el selector se rompe, avisa antes de correr o al finalizar el job.
             </p>
           </details>
           <details>
-            <summary>Es una herramienta para developers?</summary>
+            <summary>¿Funciona en sitios hechos con Web Components (Shadow DOM)?</summary>
             <p>
-              No principalmente. Está pensada para usuarios que necesitan CSVs
-              confiables sin escribir CSS, XPath ni scripts.
+              Sí, si el Shadow DOM es abierto (el caso más común): podés elegir campos que están adentro de un componente con un click, igual que en cualquier otra página.
+            </p>
+          </details>
+          <details>
+            <summary>¿Pierdo filas si hay dos productos iguales en la lista?</summary>
+            <p>
+              No. Si la página muestra dos elementos idénticos, se exportan los dos. Lo que se descarta es solo lo que se vuelve a leer al scrollear o al cargar más, así no tenés duplicados falsos.
+            </p>
+          </details>
+          <details>
+            <summary>¿Es una herramienta para developers?</summary>
+            <p>
+              No principalmente. Está pensada para usuarios que necesitan CSVs confiables sin escribir CSS, XPath ni scripts.
             </p>
           </details>
           <details>
             <summary>¿En qué idiomas está la extensión?</summary>
             <p>
-              Español e inglés. Toma el idioma de tu Chrome automáticamente: el panel, las notificaciones,
-              los nombres de columna sugeridos y el checkout cambian juntos.
+              Español e inglés. Toma el idioma de tu Chrome automáticamente: el panel, las notificaciones, los nombres de columna sugeridos y el checkout cambian juntos.
             </p>
           </details>
         </div>
