@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How to extract data from a website to Excel without coding | Sturdy Scraper</title>
+    <meta name="description" content="Step-by-step guide to get lists, prices or catalogs from any website into Excel or Google Sheets without copy-pasting or writing code, even with pagination and infinite scroll." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://sturdyscraper.com/en/guides/website-data-to-excel" />
+    <link rel="alternate" hreflang="es" href="https://sturdyscraper.com/guias/datos-de-una-web-a-excel" />
+    <link rel="alternate" hreflang="en" href="https://sturdyscraper.com/en/guides/website-data-to-excel" />
+    <link rel="alternate" hreflang="x-default" href="https://sturdyscraper.com/en/guides/website-data-to-excel" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How to extract data from a website to Excel without coding | Sturdy Scraper" />
+    <meta property="og:description" content="Step-by-step guide to get lists, prices or catalogs from any website into Excel or Google Sheets without copy-pasting or writing code, even with pagination and infinite scroll." />
+    <meta property="og:url" content="https://sturdyscraper.com/en/guides/website-data-to-excel" />
+    <meta property="og:image" content="https://sturdyscraper.com/og-image-en.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css?v=20260917c" />
+    <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "How to extract data from a website to Excel without coding", "description": "Step-by-step guide to get lists, prices or catalogs from any website into Excel or Google Sheets without copy-pasting or writing code, even with pagination and infinite scroll.", "inLanguage": "en", "datePublished": "2026-09-17", "dateModified": "2026-09-17", "mainEntityOfPage": "https://sturdyscraper.com/en/guides/website-data-to-excel", "image": ["https://sturdyscraper.com/img/en/detect-similar-items-1280.webp", "https://sturdyscraper.com/img/en/pick-fields-1280.webp", "https://sturdyscraper.com/img/en/pagination-1280.webp", "https://sturdyscraper.com/img/en/export-data-1280.webp"], "author": {"@type": "Person", "name": "Sebastián Martini"}, "publisher": {"@type": "Organization", "name": "Sturdy Scraper", "logo": {"@type": "ImageObject", "url": "https://sturdyscraper.com/logo.png"}}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do I need to know how to code or use XPath?", "acceptedAnswer": {"@type": "Answer", "text": "No. Everything is picked with clicks on the page; the extension generates the selectors."}}, {"@type": "Question", "name": "Is it free?", "acceptedAnswer": {"@type": "Answer", "text": "The Free plan includes every feature up to 200 rows per scrape, no credit card. Pro is USD 9 per month or USD 79 per year and removes the limit."}}, {"@type": "Question", "name": "Does it work with Google Sheets?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Export to CSV and import it into Sheets, or use JSON if another tool will process it."}}]}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Sturdy Scraper", "item": "https://sturdyscraper.com/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://sturdyscraper.com/en/guides/website-data-to-excel"}]}]</script>
+    <style>.guide-shot{margin:1rem 0 0}.guide-shot img{width:100%;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.1)}.alt-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}.legal-container details{border-top:1px solid rgba(127,127,127,.25);padding:.8rem 0}.legal-container summary{cursor:pointer;font-weight:600}</style>
+  </head>
+  <body class="legal-page">
+    <header class="legal-header">
+      <a class="brand" href="/en/">
+        <img src="/logo-56.webp" alt="" width="28" height="28" />
+        <span>Sturdy Scraper</span>
+      </a>
+      <nav aria-label="Navigation">
+        <a href="/en/#pricing">Pricing</a>
+        <a href="/en/#faq">FAQ</a>
+        <a href="mailto:support@sturdyscraper.com">Contact</a>
+        <a href="/guias/datos-de-una-web-a-excel" hreflang="es" lang="es">ES</a>
+      </nav>
+    </header>
+
+    <main class="legal-container">
+      <p class="eyebrow">Guide</p>
+      <h1>How to extract data from a website to Excel without coding</h1>
+      <p class="legal-date">Updated: September 17, 2026</p>
+      <section>
+        <h2>When copy-paste stops being enough</h2>
+        <p>For ten rows, copy-paste works. It breaks down with long listings: cells land in the wrong place, images and links get lost, and if the site loads more results as you scroll or spans twenty pages, you end up doing the same thing for an hour.</p><p>A visual scraper fixes exactly that: you show it once which data you want from each item, and it goes through the whole list for you.</p>
+      </section>
+      <section>
+        <h2>1. Pick what repeats on the page</h2>
+        <p>Open the page with the data (a product listing, search results, a directory) and in Sturdy Scraper click <strong>New scraper → Select container</strong>. Hover one of the cards or rows: the extension highlights every similar one and tells you how many it found. One click locks in the pattern.</p>
+        <figure class="guide-shot"><img src="/img/en/detect-similar-items-640.webp" srcset="/img/en/detect-similar-items-640.webp 640w, /img/en/detect-similar-items-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="1. Pick what repeats on the page" /></figure>
+      </section>
+      <section>
+        <h2>2. Click the columns you want</h2>
+        <p>With <strong>Add field</strong> you click the title, price, link or image inside one card. Each click becomes a column in your spreadsheet, and the preview shows the first real rows right away so you can spot empty values before running anything.</p>
+        <figure class="guide-shot"><img src="/img/en/pick-fields-640.webp" srcset="/img/en/pick-fields-640.webp 640w, /img/en/pick-fields-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="2. Click the columns you want" /></figure>
+      </section>
+      <section>
+        <h2>3. Tell it how the rest of the results load</h2>
+        <p>This is where most tools fall short. Choose the case that matches:</p><ul><li><strong>“Next” link</strong>: classic numbered pages.</li><li><strong>“Load more” button</strong>: the list grows on the same page.</li><li><strong>Infinite scroll</strong>: more results appear as you scroll.</li></ul><p>In every case the extension waits until new content actually shows up before moving on, instead of a fixed delay that sometimes isn't enough and leaves rows behind. You can set a page limit to try it on a small run first.</p>
+        <figure class="guide-shot"><img src="/img/en/pagination-640.webp" srcset="/img/en/pagination-640.webp 640w, /img/en/pagination-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="3. Tell it how the rest of the results load" /></figure>
+      </section>
+      <section>
+        <h2>4. Export to CSV and open it in Excel</h2>
+        <p>When it finishes, choose <strong>CSV</strong> and export. The file uses the encoding Excel needs to display accents and special characters correctly, so it opens with a double click, no import wizard. In Google Sheets: <em>File → Import → Upload</em>.</p><p>For huge listings (tens of thousands of rows) the extension writes the file to disk in chunks without loading everything into memory, and you can resume if it gets interrupted.</p>
+        <figure class="guide-shot"><img src="/img/en/export-data-640.webp" srcset="/img/en/export-data-640.webp 640w, /img/en/export-data-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="4. Export to CSV and open it in Excel" /></figure>
+      </section>
+      <section>
+        <h2>If the site changes</h2>
+        <p>Sites change their HTML without notice, and a scraper that used to work starts returning empty columns. Sturdy Scraper compares each run with the first one and warns you when a field stops matching, before you find out from a spreadsheet you already shared.</p>
+      </section>
+      <section>
+        <h2>What data to extract (and what not to)</h2>
+        <p>Use it for public, structured information: prices, catalogs, listings, business directories. Respect each site's terms and don't build personal contact lists for marketing. Everything you extract stays in your browser; it never goes through a server.</p>
+      </section>
+      <div class="alt-cta">
+        <a class="button primary" href="/en/#waitlist">Get early access</a>
+        <a class="button secondary" href="/en/#pricing">See pricing</a>
+      </div>
+      <section id="faq">
+        <h2>FAQ</h2>
+        <details><summary>Do I need to know how to code or use XPath?</summary><p>No. Everything is picked with clicks on the page; the extension generates the selectors.</p></details><details><summary>Is it free?</summary><p>The Free plan includes every feature up to 200 rows per scrape, no credit card. Pro is USD 9 per month or USD 79 per year and removes the limit.</p></details><details><summary>Does it work with Google Sheets?</summary><p>Yes. Export to CSV and import it into Sheets, or use JSON if another tool will process it.</p></details>
+      </section>
+      <section>
+        <h2>Keep reading</h2>
+        <p><a href="/en/instant-data-scraper-alternative">Instant Data Scraper alternative</a> · <a href="/en/web-scraper-alternative">Web Scraper alternative</a> · <a href="/en/changelog">Changelog</a></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Sturdy Scraper</strong>
+        <span>Local-first web scraping for Chrome.</span>
+        <span>Made by Sebastián Martini · Argentina</span>
+      </div>
+      <nav aria-label="Footer">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/refund-policy">Refunds</a>
+        <a href="mailto:support@sturdyscraper.com">Contact</a>
+      </nav>
+    </footer>
+  </body>
+</html>
