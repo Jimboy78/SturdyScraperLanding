@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cómo monitorear precios de la competencia sin programar | Sturdy Scraper</title>
+    <meta name="description" content="Seguí los precios de la competencia en una planilla que se actualiza sola, sin programar, y recibí un aviso si la tienda cambia su página." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://sturdyscraper.com/guias/monitorear-precios-competencia" />
+    <link rel="alternate" hreflang="es" href="https://sturdyscraper.com/guias/monitorear-precios-competencia" />
+    <link rel="alternate" hreflang="en" href="https://sturdyscraper.com/en/guides/competitor-price-monitoring" />
+    <link rel="alternate" hreflang="x-default" href="https://sturdyscraper.com/en/guides/competitor-price-monitoring" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Cómo monitorear precios de la competencia sin programar | Sturdy Scraper" />
+    <meta property="og:description" content="Seguí los precios de la competencia en una planilla que se actualiza sola, sin programar, y recibí un aviso si la tienda cambia su página." />
+    <meta property="og:url" content="https://sturdyscraper.com/guias/monitorear-precios-competencia" />
+    <meta property="og:image" content="https://sturdyscraper.com/og-image.png" />
+    <meta property="og:locale" content="es_AR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css?v=20260917c" />
+    <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "Cómo monitorear precios de la competencia sin programar", "description": "Seguí los precios de la competencia en una planilla que se actualiza sola, sin programar, y recibí un aviso si la tienda cambia su página.", "inLanguage": "es", "datePublished": "2026-09-17", "dateModified": "2026-09-17", "mainEntityOfPage": "https://sturdyscraper.com/guias/monitorear-precios-competencia", "image": ["https://sturdyscraper.com/img/detectar-elementos-1280.webp", "https://sturdyscraper.com/img/elegir-campos-1280.webp", "https://sturdyscraper.com/img/export-1280.webp"], "author": {"@type": "Person", "name": "Sebastián Martini"}, "publisher": {"@type": "Organization", "name": "Sturdy Scraper", "logo": {"@type": "ImageObject", "url": "https://sturdyscraper.com/logo.png"}}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Tengo que dejar la computadora prendida?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, con Chrome abierto. La revisión programada corre en tu navegador, no en la nube."}}, {"@type": "Question", "name": "¿Cuántos productos puedo seguir?", "acceptedAnswer": {"@type": "Answer", "text": "En Free, hasta 200 filas por corrida y los scrapers que quieras. En Pro no hay límite de filas."}}, {"@type": "Question", "name": "¿Qué pasa si la tienda me muestra una página distinta?", "acceptedAnswer": {"@type": "Answer", "text": "Si no encuentra los productos, pausa la programación y te avisa con una notificación. No se guarda una corrida vacía."}}]}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Sturdy Scraper", "item": "https://sturdyscraper.com/"}, {"@type": "ListItem", "position": 2, "name": "Guías", "item": "https://sturdyscraper.com/guias/monitorear-precios-competencia"}]}]</script>
+    <style>.guide-shot{margin:1rem 0 0}.guide-shot img{width:100%;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.1)}.alt-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}.legal-container details{border-top:1px solid rgba(127,127,127,.25);padding:.8rem 0}.legal-container summary{cursor:pointer;font-weight:600}</style>
+  </head>
+  <body class="legal-page">
+    <header class="legal-header">
+      <a class="brand" href="/">
+        <img src="/logo-56.webp" alt="" width="28" height="28" />
+        <span>Sturdy Scraper</span>
+      </a>
+      <nav aria-label="Navegación">
+        <a href="/#pricing">Precios</a>
+        <a href="/#faq">Preguntas</a>
+        <a href="mailto:support@sturdyscraper.com">Contacto</a>
+        <a href="/en/guides/competitor-price-monitoring" hreflang="en" lang="en">EN</a>
+      </nav>
+    </header>
+
+    <main class="legal-container">
+      <p class="eyebrow">Guía</p>
+      <h1>Cómo monitorear precios de la competencia sin programar</h1>
+      <p class="legal-date">Actualizado: 17 de septiembre de 2026</p>
+      <section>
+        <h2>Por qué revisar precios a mano no escala</h2>
+        <p>Si vendés online, saber cuánto cobra la competencia define tu margen. Revisar cinco tiendas una vez por semana se puede hacer a mano; revisar cien productos todos los días, no. Y las herramientas de monitoreo de precios que hacen esto por vos suelen cobrar por producto seguido, con planes que arrancan bastante arriba de lo que paga un vendedor chico.</p><p>La alternativa barata es un scraper que lea la página de listado de cada competidor y te deje los precios en una planilla, en el horario que elijas.</p>
+      </section>
+      <section>
+        <h2>1. Armá el scraper sobre el listado</h2>
+        <p>Abrí la página de la tienda donde aparecen los productos que te interesan (una categoría o una búsqueda) y en Sturdy Scraper tocá <strong>Nuevo scraper → Seleccionar contenedor</strong>. Hacé click en una tarjeta de producto: la extensión marca todas las parecidas y te dice cuántas encontró.</p>
+        <figure class="guide-shot"><img src="/img/detectar-elementos-640.webp" srcset="/img/detectar-elementos-640.webp 640w, /img/detectar-elementos-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="1. Armá el scraper sobre el listado" /></figure>
+      </section>
+      <section>
+        <h2>2. Elegí qué columnas guardar</h2>
+        <p>Con <strong>Agregar campo</strong> clickeás el nombre, el precio y el link de un producto. El link es importante: te sirve para cruzar las corridas de distintos días aunque la tienda cambie el orden del listado. Si hay más de una página de resultados, en el paso siguiente elegís cómo avanzar (link “Siguiente”, botón “Cargar más” o scroll) y un máximo de páginas.</p>
+        <figure class="guide-shot"><img src="/img/elegir-campos-640.webp" srcset="/img/elegir-campos-640.webp 640w, /img/elegir-campos-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="2. Elegí qué columnas guardar" /></figure>
+      </section>
+      <section>
+        <h2>3. Programá la revisión</h2>
+        <p>En la lista de scrapers tocá <strong>Programar</strong> y elegí cada cuánto correrlo: desde cada 15 minutos hasta una vez por día. Para precios, una o dos veces por día suele alcanzar.</p><p>Cada corrida abre la tienda en una pestaña de fondo, guarda los datos y la cierra sola, así que podés seguir usando el navegador. La única condición es que Chrome esté abierto: la extensión no corre en servidores, todo pasa en tu computadora.</p>
+      </section>
+      <section>
+        <h2>4. Exportá y compará en tu planilla</h2>
+        <p>Cada corrida queda guardada con su fecha. Exportala a CSV y abrila en Excel o Google Sheets; con el link del producto como clave, un <em>BUSCARV</em> o <em>XLOOKUP</em> te muestra qué cambió de un día al otro.</p>
+        <figure class="guide-shot"><img src="/img/export-640.webp" srcset="/img/export-640.webp 640w, /img/export-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="4. Exportá y compará en tu planilla" /></figure>
+      </section>
+      <section>
+        <h2>Si la tienda cambia su página</h2>
+        <p>Es lo que rompe cualquier monitoreo casero: la tienda rediseña el listado y tu planilla empieza a llenarse de celdas vacías sin que nadie avise. Sturdy Scraper compara cada corrida con la primera:</p><ul><li>Si ya no encuentra ningún producto, <strong>pausa la programación y te manda una notificación</strong> en lugar de guardar una corrida vacía.</li><li>Si encuentra los productos pero una columna quedó vacía (por ejemplo, movieron el precio), la corrida se guarda y te avisa cuál columna revisar.</li></ul>
+      </section>
+      <section>
+        <h2>Límites y buenas prácticas</h2>
+        <p>El plan Free sirve para probar todo esto con hasta 200 filas por corrida; Pro quita ese límite. Mirá precios públicos, no programes revisiones más seguido de lo que necesitás y respetá los términos de cada sitio. Los datos quedan en tu navegador: no pasan por ningún servidor nuestro.</p>
+      </section>
+      <div class="alt-cta">
+        <a class="button primary" href="/#waitlist">Pedir acceso anticipado</a>
+        <a class="button secondary" href="/#pricing">Ver precios</a>
+      </div>
+      <section id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <details><summary>¿Tengo que dejar la computadora prendida?</summary><p>Sí, con Chrome abierto. La revisión programada corre en tu navegador, no en la nube.</p></details><details><summary>¿Cuántos productos puedo seguir?</summary><p>En Free, hasta 200 filas por corrida y los scrapers que quieras. En Pro no hay límite de filas.</p></details><details><summary>¿Qué pasa si la tienda me muestra una página distinta?</summary><p>Si no encuentra los productos, pausa la programación y te avisa con una notificación. No se guarda una corrida vacía.</p></details>
+      </section>
+      <section>
+        <h2>Seguí leyendo</h2>
+        <p><a href="/guias/datos-de-una-web-a-excel">Guía: pasar datos de una web a Excel</a> · <a href="/alternativa-web-scraper">Alternativa a Web Scraper</a> · <a href="/novedades">Novedades</a></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Sturdy Scraper</strong>
+        <span>Web scraping local-first para Chrome.</span>
+        <span>Hecho por Sebastián Martini · Argentina</span>
+      </div>
+      <nav aria-label="Footer">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/refund-policy">Refunds</a>
+        <a href="mailto:support@sturdyscraper.com">Contact</a>
+      </nav>
+    </footer>
+  </body>
+</html>

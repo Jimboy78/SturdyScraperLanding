@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How to monitor competitor prices without coding | Sturdy Scraper</title>
+    <meta name="description" content="Track competitor prices in a spreadsheet that updates on a schedule, without code, and get an alert if the store changes its page." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://sturdyscraper.com/en/guides/competitor-price-monitoring" />
+    <link rel="alternate" hreflang="es" href="https://sturdyscraper.com/guias/monitorear-precios-competencia" />
+    <link rel="alternate" hreflang="en" href="https://sturdyscraper.com/en/guides/competitor-price-monitoring" />
+    <link rel="alternate" hreflang="x-default" href="https://sturdyscraper.com/en/guides/competitor-price-monitoring" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How to monitor competitor prices without coding | Sturdy Scraper" />
+    <meta property="og:description" content="Track competitor prices in a spreadsheet that updates on a schedule, without code, and get an alert if the store changes its page." />
+    <meta property="og:url" content="https://sturdyscraper.com/en/guides/competitor-price-monitoring" />
+    <meta property="og:image" content="https://sturdyscraper.com/og-image-en.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css?v=20260917c" />
+    <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "How to monitor competitor prices without coding", "description": "Track competitor prices in a spreadsheet that updates on a schedule, without code, and get an alert if the store changes its page.", "inLanguage": "en", "datePublished": "2026-09-17", "dateModified": "2026-09-17", "mainEntityOfPage": "https://sturdyscraper.com/en/guides/competitor-price-monitoring", "image": ["https://sturdyscraper.com/img/en/detect-similar-items-1280.webp", "https://sturdyscraper.com/img/en/pick-fields-1280.webp", "https://sturdyscraper.com/img/en/export-data-1280.webp"], "author": {"@type": "Person", "name": "Sebastián Martini"}, "publisher": {"@type": "Organization", "name": "Sturdy Scraper", "logo": {"@type": "ImageObject", "url": "https://sturdyscraper.com/logo.png"}}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does my computer need to stay on?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with Chrome open. Scheduled checks run in your browser, not in the cloud."}}, {"@type": "Question", "name": "How many products can I track?", "acceptedAnswer": {"@type": "Answer", "text": "On Free, up to 200 rows per run and as many scrapers as you want. Pro has no row limit."}}, {"@type": "Question", "name": "What if the store shows a different page?", "acceptedAnswer": {"@type": "Answer", "text": "If it can't find the products, it pauses the schedule and notifies you. No empty run is saved."}}]}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Sturdy Scraper", "item": "https://sturdyscraper.com/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://sturdyscraper.com/en/guides/competitor-price-monitoring"}]}]</script>
+    <style>.guide-shot{margin:1rem 0 0}.guide-shot img{width:100%;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.1)}.alt-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}.legal-container details{border-top:1px solid rgba(127,127,127,.25);padding:.8rem 0}.legal-container summary{cursor:pointer;font-weight:600}</style>
+  </head>
+  <body class="legal-page">
+    <header class="legal-header">
+      <a class="brand" href="/en/">
+        <img src="/logo-56.webp" alt="" width="28" height="28" />
+        <span>Sturdy Scraper</span>
+      </a>
+      <nav aria-label="Navigation">
+        <a href="/en/#pricing">Pricing</a>
+        <a href="/en/#faq">FAQ</a>
+        <a href="mailto:support@sturdyscraper.com">Contact</a>
+        <a href="/guias/monitorear-precios-competencia" hreflang="es" lang="es">ES</a>
+      </nav>
+    </header>
+
+    <main class="legal-container">
+      <p class="eyebrow">Guide</p>
+      <h1>How to monitor competitor prices without coding</h1>
+      <p class="legal-date">Updated: September 17, 2026</p>
+      <section>
+        <h2>Why checking prices by hand doesn't scale</h2>
+        <p>If you sell online, what your competitors charge sets your margin. Checking five stores once a week by hand is fine; checking a hundred products every day is not. Dedicated price monitoring tools usually charge per tracked product, with plans well above what a small seller wants to pay.</p><p>The cheap alternative is a scraper that reads each competitor's listing page and drops the prices into a spreadsheet on the schedule you choose.</p>
+      </section>
+      <section>
+        <h2>1. Build the scraper on the listing page</h2>
+        <p>Open the store page that lists the products you care about (a category or a search) and in Sturdy Scraper click <strong>New scraper → Select container</strong>. Click one product card: the extension highlights every similar one and tells you how many it found.</p>
+        <figure class="guide-shot"><img src="/img/en/detect-similar-items-640.webp" srcset="/img/en/detect-similar-items-640.webp 640w, /img/en/detect-similar-items-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="1. Build the scraper on the listing page" /></figure>
+      </section>
+      <section>
+        <h2>2. Pick the columns to keep</h2>
+        <p>With <strong>Add field</strong>, click a product's name, price and link. The link matters: it lets you match runs from different days even if the store reorders the list. If results span several pages, the next step lets you choose how to move forward (“Next” link, “Load more” button or scroll) and a page limit.</p>
+        <figure class="guide-shot"><img src="/img/en/pick-fields-640.webp" srcset="/img/en/pick-fields-640.webp 640w, /img/en/pick-fields-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="2. Pick the columns to keep" /></figure>
+      </section>
+      <section>
+        <h2>3. Schedule the check</h2>
+        <p>In your scraper list, click <strong>Schedule</strong> and choose how often it runs: from every 15 minutes to once a day. For prices, once or twice a day is usually enough.</p><p>Each run opens the store in a background tab, saves the data and closes the tab, so you can keep browsing. The one requirement is that Chrome is open: the extension doesn't run on servers, everything happens on your computer.</p>
+      </section>
+      <section>
+        <h2>4. Export and compare in your spreadsheet</h2>
+        <p>Every run is saved with its date. Export it to CSV and open it in Excel or Google Sheets; with the product link as the key, a <em>VLOOKUP</em> or <em>XLOOKUP</em> shows what changed from one day to the next.</p>
+        <figure class="guide-shot"><img src="/img/en/export-data-640.webp" srcset="/img/en/export-data-640.webp 640w, /img/en/export-data-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="4. Export and compare in your spreadsheet" /></figure>
+      </section>
+      <section>
+        <h2>When the store changes its page</h2>
+        <p>This is what breaks any homemade monitoring: the store redesigns its listing and your sheet silently fills with empty cells. Sturdy Scraper compares every run with the first one:</p><ul><li>If it can't find any products, it <strong>pauses the schedule and sends you a notification</strong> instead of saving an empty run.</li><li>If it finds the products but a column came back empty (say, the price moved), the run is saved and it tells you which column to check.</li></ul>
+      </section>
+      <section>
+        <h2>Limits and good practice</h2>
+        <p>The Free plan lets you try all of this with up to 200 rows per run; Pro removes the limit. Stick to public prices, don't schedule checks more often than you need, and respect each site's terms. Your data stays in your browser and never goes through a server of ours.</p>
+      </section>
+      <div class="alt-cta">
+        <a class="button primary" href="/en/#waitlist">Get early access</a>
+        <a class="button secondary" href="/en/#pricing">See pricing</a>
+      </div>
+      <section id="faq">
+        <h2>FAQ</h2>
+        <details><summary>Does my computer need to stay on?</summary><p>Yes, with Chrome open. Scheduled checks run in your browser, not in the cloud.</p></details><details><summary>How many products can I track?</summary><p>On Free, up to 200 rows per run and as many scrapers as you want. Pro has no row limit.</p></details><details><summary>What if the store shows a different page?</summary><p>If it can't find the products, it pauses the schedule and notifies you. No empty run is saved.</p></details>
+      </section>
+      <section>
+        <h2>Keep reading</h2>
+        <p><a href="/en/guides/website-data-to-excel">Guide: website data to Excel</a> · <a href="/en/web-scraper-alternative">Web Scraper alternative</a> · <a href="/en/changelog">Changelog</a></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Sturdy Scraper</strong>
+        <span>Local-first web scraping for Chrome.</span>
+        <span>Made by Sebastián Martini · Argentina</span>
+      </div>
+      <nav aria-label="Footer">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/refund-policy">Refunds</a>
+        <a href="mailto:support@sturdyscraper.com">Contact</a>
+      </nav>
+    </footer>
+  </body>
+</html>
