@@ -2188,3 +2188,12 @@ h3 {
     scroll-snap-align: center;
   }
 }
+
+/* Selector de idioma */
+.site-header nav a.lang-switch {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}

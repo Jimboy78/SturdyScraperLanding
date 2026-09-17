@@ -3,5 +3,6 @@ Allow: /
 Disallow: /admin
 Disallow: /checkout
 Disallow: /gracias
+Disallow: /en/thanks
 
 Sitemap: https://sturdyscraper.com/sitemap.xml

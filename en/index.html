@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sturdy Scraper | No-Code Web Scraper Chrome Extension for Dynamic Sites</title>
+    <meta
+      name="description"
+      content="Scrape any website to CSV without code. A Chrome extension that handles infinite scroll, load more buttons and pagination, exports big datasets without crashing and warns you when selectors break."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#14121f" />
+    <link rel="canonical" href="https://sturdyscraper.com/en/" />
+    <link rel="alternate" hreflang="es" href="https://sturdyscraper.com/" />
+    <link rel="alternate" hreflang="en" href="https://sturdyscraper.com/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://sturdyscraper.com/en/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sturdy Scraper | The no-code web scraper that doesn't break on dynamic sites" />
+    <meta
+      property="og:description"
+      content="Pick data with clicks, handle infinite scroll and pagination, save rows as you go and get warned when a selector breaks."
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="es_AR" />
+    <meta property="og:url" content="https://sturdyscraper.com/en/" />
+    <meta property="og:image" content="https://sturdyscraper.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sturdy Scraper | No-code web scraper for Chrome" />
+    <meta
+      name="twitter:description"
+      content="Local scraping in your browser, big CSV exports without crashes and alerts before you export empty tables."
+    />
+    <meta name="twitter:image" content="https://sturdyscraper.com/og-image.png" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/styles.css?v=20260917b" as="style" />
+    <link rel="stylesheet" href="/styles.css?v=20260917b" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Sturdy Scraper",
+        "url": "https://sturdyscraper.com/en/",
+        "inLanguage": "en",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Chrome",
+        "screenshot": [
+          "https://sturdyscraper.com/img/detectar-elementos-1280.webp",
+          "https://sturdyscraper.com/img/elegir-campos-1280.webp",
+          "https://sturdyscraper.com/img/paginacion-1280.webp",
+          "https://sturdyscraper.com/img/export-1280.webp"
+        ],
+        "description": "No-code web scraper Chrome extension with reliable dynamic pagination, streaming exports and broken selector alerts.",
+        "offers": [
+          { "@type": "Offer", "price": "0", "priceCurrency": "USD", "name": "Free" },
+          { "@type": "Offer", "price": "9", "priceCurrency": "USD", "name": "Pro monthly" },
+          { "@type": "Offer", "price": "79", "priceCurrency": "USD", "name": "Pro yearly" }
+        ],
+        "featureList": [
+          "Point-and-click selector",
+          "Infinite scroll scraping",
+          "Load more button scraping",
+          "Classic pagination",
+          "Large CSV, JSON and NDJSON export",
+          "Broken selector alerts",
+          "Scheduled scrapers",
+          "Local-first data processing"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does my scraped data go through a server?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Scraped data is processed and stored locally in your browser. The only thing that leaves your browser is the Pro license check (email and license key), never the data you scrape." }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it work on sites with infinite scroll?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The extension detects infinite scroll and waits for real DOM changes instead of a fixed delay picked by hand." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use it on e-commerce sites and marketplaces?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, especially for listings and pages that load content when you scroll or change filters. Pagination detection adapts to how each site actually loads results. Only scrape data you are allowed to, following each site's terms." }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens if the site's HTML changes?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A health check compares match rates against a baseline. If a selector breaks, you get a warning before the run or when the job finishes." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it a tool for developers?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Not mainly. It's built for people who need reliable CSVs without writing CSS, XPath or scripts." }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-scroll-header>
+      <a class="brand" href="#top" aria-label="Sturdy Scraper home">
+        <img src="/logo.png" alt="" width="28" height="28" />
+        <span>Sturdy Scraper</span>
+      </a>
+      <nav aria-label="Main">
+        <a href="#features">Features</a>
+        <a href="#demo">Demo</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="/" hreflang="es" lang="es" class="lang-switch" title="Ver en español">ES</a>
+      </nav>
+      <a class="nav-cta" href="#waitlist">Get early access</a>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero">
+        <div class="hero-bg" aria-hidden="true">
+          <div class="scan-grid"></div>
+          <div class="data-stream stream-a"></div>
+          <div class="data-stream stream-b"></div>
+          <div class="data-stream stream-c"></div>
+        </div>
+
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Chrome extension · Web Scraper &amp; Data Miner alternative</p>
+          <h1>Turn messy, dynamic pages into clean data in minutes.</h1>
+          <p class="hero-text">
+            Extract prices, products or listings from sites that load content dynamically, just by
+            clicking. No scripts, no fighting broken selectors.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#waitlist">Get early access</a>
+            <a class="button secondary" href="#demo">See the 60-second demo</a>
+          </div>
+          <dl class="trust-strip" aria-label="Product summary">
+            <div>
+              <dt>200</dt>
+              <dd>free rows per scrape</dd>
+            </div>
+            <div>
+              <dt>5k+</dt>
+              <dd>rows streamed to disk</dd>
+            </div>
+            <div>
+              <dt>0</dt>
+              <dd>data sent to a backend</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="hero-product reveal" aria-label="Animated product preview">
+          <div class="browser-shell">
+            <div class="browser-top">
+              <span></span><span></span><span></span>
+              <div class="url-bar">products.example.com/laptops</div>
+            </div>
+            <div class="product-demo">
+              <div class="cards-stage">
+                <article class="demo-card active">
+                  <span class="selector-ring"></span>
+                  <strong>ThinkPad Carbon</strong>
+                  <small>$1,249 · 4.8</small>
+                </article>
+                <article class="demo-card">
+                  <strong>UltraBook Air</strong>
+                  <small>$980 · 4.6</small>
+                </article>
+                <article class="demo-card">
+                  <strong>Creator Pro 14</strong>
+                  <small>$1,520 · 4.7</small>
+                </article>
+                <article class="demo-card">
+                  <strong>TravelMate X</strong>
+                  <small>$790 · 4.3</small>
+                </article>
+              </div>
+              <aside class="sidepanel-mock">
+                <div class="panel-head">
+                  <span class="status-dot"></span>
+                  <strong>Scraping</strong>
+                </div>
+                <div class="metric">
+                  <span>Rows</span>
+                  <b data-count-to="5000">0</b>
+                </div>
+                <div class="progress"><span></span></div>
+                <ul>
+                  <li><span></span> Selectors healthy</li>
+                  <li><span></span> Infinite scroll detected</li>
+                  <li><span></span> CSV ready to export</li>
+                </ul>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="logo-row reveal" aria-label="Highlights">
+        <span>Lightweight Web Scraper alternative</span>
+        <span>No fragile fixed delays</span>
+        <span>Local export</span>
+        <span>Chrome MV3</span>
+      </section>
+
+      <section class="section compact-points">
+        <div class="section-head reveal">
+          <p class="eyebrow">Why it takes minutes to try</p>
+          <h2>A simple flow: select, check and export.</h2>
+        </div>
+        <div class="compact-points-grid">
+          <article class="compact-point reveal">
+            <h3>No backend, no account</h3>
+            <p>
+              Scraping runs in your browser, so you can start without setting up infrastructure or
+              waiting on a technical team.
+            </p>
+          </article>
+          <article class="compact-point reveal">
+            <h3>More reliable than a basic scraper</h3>
+            <p>
+              Detects infinite scroll, load more buttons and pagination by waiting for real DOM changes,
+              not fixed delays.
+            </p>
+          </article>
+          <article class="compact-point reveal">
+            <h3>Less noise, more useful CSVs</h3>
+            <p>Health checks warn you before you export empty or incomplete tables.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="use-cases" class="section">
+        <div class="section-head reveal">
+          <p class="eyebrow">Real use cases</p>
+          <h2>For people who need data without turning the job into an engineering project.</h2>
+        </div>
+        <div class="use-cases-grid">
+          <article class="use-case-card reveal">
+            <h3>E-commerce</h3>
+            <p>Extract prices, stock and reviews from stores with infinite scroll or dynamic pagination.</p>
+          </article>
+          <article class="use-case-card reveal">
+            <h3>Research and directories</h3>
+            <p>
+              Turn catalogs, public directories or reference listings into a clean table, without a
+              complicated workflow.
+            </p>
+          </article>
+          <article class="use-case-card reveal">
+            <h3>Marketplaces and comparison sites</h3>
+            <p>Capture offers and listings that change with filters, progressive loading or "more results" buttons.</p>
+          </article>
+          <article class="use-case-card reveal">
+            <h3>Content monitoring</h3>
+            <p>Keep track of posts, products or reviews without manual copy-paste or fragile scripts.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="features" class="section">
+        <div class="section-head reveal">
+          <p class="eyebrow">Real problems it solves</p>
+          <h2>Built for the three places where common scrapers fail.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <div class="icon">01</div>
+            <h3>Reliable dynamic pagination</h3>
+            <p>
+              Infinite scroll, "load more" buttons and classic pagination, detected automatically and
+              waiting for real DOM changes.
+            </p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="icon">02</div>
+            <h3>Big exports without crashes</h3>
+            <p>Rows are saved incrementally in IndexedDB and large datasets are streamed straight to disk.</p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="icon">03</div>
+            <h3>Broken selector alerts</h3>
+            <p>
+              Health checks before and after each job. If the site changed, you get a warning instead of
+              a silently empty CSV.
+            </p>
+          </article>
+          <article class="feature-card reveal">
+            <div class="icon">04</div>
+            <h3>Local data by design</h3>
+            <p>
+              Scraping happens in your browser. No data backend, no dataset telemetry and no account
+              required to get started.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section visual-proof">
+        <div class="visual-proof-grid reveal">
+          <div class="visual-proof-copy">
+            <p class="eyebrow">Clearer than a traditional scraper</p>
+            <h2>Results show up fast: select, review and export.</h2>
+            <p>
+              The goal isn't to cram the screen with options. It's to get you to a useful CSV with fewer
+              steps, less guesswork and less time lost on fragile setups.
+            </p>
+            <ul class="check-list">
+              <li>Pick elements with simple clicks</li>
+              <li>Visual preview before exporting</li>
+              <li>Scroll, load more and pagination support</li>
+            </ul>
+          </div>
+          <div class="visual-stack">
+            <div class="mock-screenshot">
+              <div class="screenshot-bar">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="screenshot-body">
+                <div class="screenshot-left">
+                  <div class="mini-card active"></div>
+                  <div class="mini-card"></div>
+                  <div class="mini-card"></div>
+                </div>
+                <div class="screenshot-right">
+                  <div class="metric-pill">5,000 rows</div>
+                  <div class="pill-row"></div>
+                  <div class="pill-row short"></div>
+                  <div class="pill-row"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mini-quote">
+              <strong>Less time on setup.</strong>
+              <span>More time reviewing results and exporting.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="demo" class="section demo-section">
+        <div class="section-head reveal">
+          <p class="eyebrow">Visual demo</p>
+          <h2>Seeing how it works beats imagining it.</h2>
+          <p class="section-intro">
+            Watch a single click turn into a full workflow: detect, configure, validate and export.
+          </p>
+        </div>
+        <div class="timeline reveal">
+          <button class="step active" data-step="0">
+            <span>1</span>
+            Pick the repeating item
+          </button>
+          <button class="step" data-step="1">
+            <span>2</span>
+            Click the fields you want
+          </button>
+          <button class="step" data-step="2">
+            <span>3</span>
+            Confirm how the page loads more
+          </button>
+          <button class="step" data-step="3">
+            <span>4</span>
+            Review and export the results
+          </button>
+        </div>
+        <div class="demo-board reveal" data-demo-board>
+          <div class="demo-visual">
+            <div class="mock-page">
+              <div class="mock-toolbar">
+                <div class="mock-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="mock-url">products.example.com/laptops</div>
+              </div>
+              <div class="mock-app">
+                <div class="mock-listing">
+                  <div class="mock-card selected">
+                    <div class="card-top">
+                      <strong>Wireless Keyboard</strong>
+                      <span class="chip">✓</span>
+                    </div>
+                    <div class="card-meta">
+                      <span>$59</span>
+                      <span>4.8 ★</span>
+                    </div>
+                  </div>
+                  <div class="mock-card selected">
+                    <div class="card-top">
+                      <strong>USB-C Dock</strong>
+                      <span class="chip">✓</span>
+                    </div>
+                    <div class="card-meta">
+                      <span>$119</span>
+                      <span>4.7 ★</span>
+                    </div>
+                  </div>
+                  <div class="mock-card selected">
+                    <div class="card-top">
+                      <strong>Studio Monitor</strong>
+                      <span class="chip">✓</span>
+                    </div>
+                    <div class="card-meta">
+                      <span>$340</span>
+                      <span>4.6 ★</span>
+                    </div>
+                  </div>
+                  <div class="mock-actions">
+                    <button class="load-more">Load more</button>
+                    <span class="mock-hint">3 results detected</span>
+                  </div>
+                </div>
+                <aside class="mock-inspector">
+                  <div class="inspector-pill">Active selector</div>
+                  <div class="inspector-row large"></div>
+                  <div class="inspector-row"></div>
+                  <div class="inspector-row short"></div>
+                  <div class="inspector-footer">
+                    <span class="status-dot"></span>
+                    <span>Ready to extract</span>
+                  </div>
+                </aside>
+              </div>
+            </div>
+          </div>
+          <div class="demo-copy">
+            <p class="step-label">Step <span data-demo-index>1</span> of 4</p>
+            <h3 data-demo-title>Pick the repeating item</h3>
+            <p data-demo-text>
+              Click a card, row or item in the list. The extension detects that it repeats and shows how
+              many similar elements it found to use as the scraper's context.
+            </p>
+            <div class="demo-badge">Step-by-step visual flow</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="screenshots" class="section shots-section">
+        <div class="section-head reveal">
+          <p class="eyebrow">Real screenshots</p>
+          <h2>This is the extension at work.</h2>
+          <p class="section-intro">
+            Chrome's side panel scraping a demo store, unedited. Captured from the Spanish interface.
+          </p>
+        </div>
+        <div class="shots-grid">
+          <figure class="shot">
+            <img src="/img/detectar-elementos-640.webp" srcset="/img/detectar-elementos-640.webp 640w, /img/detectar-elementos-1280.webp 1280w"
+              sizes="(max-width: 720px) 88vw, 560px" width="1280" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto"
+              alt="One click on a product card and the extension detects the 12 similar products on the page" />
+            <figcaption>One click on a card and it detects the 12 similar products on the page</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="/img/elegir-campos-640.webp" srcset="/img/elegir-campos-640.webp 640w, /img/elegir-campos-1280.webp 1280w"
+              sizes="(max-width: 720px) 88vw, 560px" width="1280" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto"
+              alt="Pick fields with clicks and see a live data preview" />
+            <figcaption>Pick fields with clicks and see the data preview instantly</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="/img/paginacion-640.webp" srcset="/img/paginacion-640.webp 640w, /img/paginacion-1280.webp 1280w"
+              sizes="(max-width: 720px) 88vw, 560px" width="1280" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto"
+              alt="Pagination options: infinite scroll, load more button or next pages" />
+            <figcaption>Pagination with infinite scroll, a "Load more" button or next pages</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="/img/export-640.webp" srcset="/img/export-640.webp 640w, /img/export-1280.webp 1280w"
+              sizes="(max-width: 720px) 88vw, 560px" width="1280" height="800" loading="lazy" decoding="async" style="max-width:100%;height:auto"
+              alt="Finished scrape with 60 rows from 5 pages ready to export to CSV, JSON or NDJSON" />
+            <figcaption>Done: 60 rows from 5 pages, ready to export to CSV, JSON or NDJSON</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section contrast">
+        <div class="section-head reveal">
+          <p class="eyebrow">Why people try it</p>
+          <h2>Less configuration, clearer signals.</h2>
+        </div>
+        <div class="comparison reveal">
+          <div>
+            <h3>Traditional scrapers</h3>
+            <ul class="bad-list">
+              <li>Fixed waits that fail on slow JavaScript.</li>
+              <li>Exports that freeze on large datasets.</li>
+              <li>Broken selectors that produce empty tables.</li>
+              <li>Pricing or limits you discover too late.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Sturdy Scraper</h3>
+            <ul class="good-list">
+              <li>Waits for real changes with observers and timeouts.</li>
+              <li>Saves while scraping and exports in chunks.</li>
+              <li>Health checks before and after every run.</li>
+              <li>A clear free tier: 200 rows per scrape.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section proof-section">
+        <div class="proof-card reveal">
+          <div class="proof-copy">
+            <p class="eyebrow">Why trust it</p>
+            <h2>Less friction, better results: start, review and export without wasting time.</h2>
+            <p>
+              Instead of fighting broken selectors or pages that never finish loading, Sturdy Scraper
+              gives you a clearer flow to get a useful CSV on the first try, with less risk of losing rows
+              along the way.
+            </p>
+          </div>
+          <div class="proof-points" aria-label="Key points">
+            <div><strong>1</strong><span>simple flow</span></div>
+            <div><strong>0</strong><span>backend for your data</span></div>
+            <div><strong>100%</strong><span>local-first</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" class="section pricing-section">
+        <div class="section-head reveal">
+          <p class="eyebrow">Simple pricing</p>
+          <h2>Free to try it out. Pro when volume matters.</h2>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card reveal">
+            <h3>Free</h3>
+            <p class="price">$0</p>
+            <p>Try the full workflow, no credit card.</p>
+            <ul>
+              <li>Up to 200 rows per scrape</li>
+              <li>Unlimited scrapers</li>
+              <li>Dynamic pagination included</li>
+              <li>Broken selector alerts included</li>
+            </ul>
+          </article>
+          <article class="price-card featured reveal">
+            <div class="badge">Simplest</div>
+            <h3>Pro</h3>
+            <p class="price">USD 9<span>/month</span></p>
+            <p class="annual-price">or USD 79/year, billed annually</p>
+            <p>For real work with large datasets.</p>
+            <ul>
+              <li>Unlimited rows</li>
+              <li>Streaming export for 5,000+ rows</li>
+              <li>CSV, JSON and NDJSON</li>
+              <li>Self-serve checkout by Paddle</li>
+            </ul>
+            <div class="hero-actions">
+              <a class="button primary" href="/checkout?plan=monthly&amp;lang=en">Buy monthly</a>
+              <a class="button secondary" href="/checkout?plan=yearly&amp;lang=en">Buy yearly</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="waitlist" class="section waitlist">
+        <div class="waitlist-card reveal">
+          <div>
+            <p class="eyebrow">Early access</p>
+            <h2>Try it before the public listing.</h2>
+            <p>
+              Leave your email and what you want to scrape. We use it to prioritize real sites to test and
+              we'll write to you as soon as early access opens.
+            </p>
+            <p class="contact-line">
+              Direct contact:
+              <a href="mailto:support@sturdyscraper.com">support@sturdyscraper.com</a>
+            </p>
+          </div>
+          <form class="signup-form" id="waitlist-form" novalidate>
+            <div class="signup-fields" data-signup-fields>
+              <label>
+                Email
+                <input name="email" type="email" placeholder="you@email.com" autocomplete="email" required />
+              </label>
+              <label>
+                What do you want to scrape?
+                <input name="use_case" type="text" placeholder="e.g. e-commerce listings with infinite scroll" />
+              </label>
+              <button class="button primary" type="submit" data-submit-button>
+                <span class="btn-spinner" aria-hidden="true"></span>
+                <span data-button-label>Request access</span>
+              </button>
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+            </div>
+            <div class="signup-success" data-signup-success hidden>
+              <span class="success-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" width="28" height="28">
+                  <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2" />
+                  <path d="M7.5 12.5l2.8 2.8 6.2-6.6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <div>
+                <strong>You're on the list.</strong>
+                <p>We'll email you as soon as early access opens.</p>
+              </div>
+              <button type="button" class="link-reset" data-signup-reset>Send another</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="faq" class="section faq">
+        <div class="section-head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2>Fair questions before installing a scraper.</h2>
+        </div>
+        <div class="faq-list reveal">
+          <details open>
+            <summary>Does my scraped data go through a server?</summary>
+            <p>
+              No. Scraped data is processed and stored locally in your browser. The only thing that leaves
+              your browser is the Pro license check (email and license key), never the data you scrape.
+            </p>
+          </details>
+          <details>
+            <summary>Does it work on sites with infinite scroll?</summary>
+            <p>
+              Yes. The extension detects infinite scroll and waits for real DOM changes instead of a fixed
+              delay picked by hand.
+            </p>
+          </details>
+          <details>
+            <summary>Can I use it on e-commerce sites and marketplaces?</summary>
+            <p>
+              Yes, especially for listings and pages that load content when you scroll or change filters.
+              Pagination detection adapts to how each site actually loads results. Only scrape data you
+              are allowed to, following each site's terms.
+            </p>
+          </details>
+          <details>
+            <summary>What happens if the site's HTML changes?</summary>
+            <p>
+              A health check compares match rates against a baseline. If a selector breaks, you get a
+              warning before the run or when the job finishes.
+            </p>
+          </details>
+          <details>
+            <summary>Is it a tool for developers?</summary>
+            <p>Not mainly. It's built for people who need reliable CSVs without writing CSS, XPath or scripts.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Sturdy Scraper</strong>
+        <span>Local-first web scraping for Chrome.</span>
+        <span>Made by Sebastián Martini · Argentina</span>
+      </div>
+      <nav aria-label="Footer">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/refund-policy">Refunds</a>
+        <a href="mailto:support@sturdyscraper.com">Contact</a>
+        <a href="/en/web-scraper-alternative">vs Web Scraper</a>
+        <a href="/en/data-miner-alternative">vs Data Miner</a>
+        <a href="/en/instant-data-scraper-alternative">vs Instant Data Scraper</a>
+        <a href="/" hreflang="es" lang="es">Español</a>
+        <a href="#top">Back to top</a>
+      </nav>
+    </footer>
+
+    <script src="/script.js?v=20260917b"></script>
+  </body>
+</html>

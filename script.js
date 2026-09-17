@@ -7,28 +7,39 @@ const demoTitle = document.querySelector("[data-demo-title]");
 const demoText = document.querySelector("[data-demo-text]");
 const demoBoard = document.querySelector("[data-demo-board]");
 
-const demoSteps = [
-  {
-    title: "Elegí el contenedor repetido",
-    text: "Hacé click sobre una card, fila o item del listado. La extensión detecta que se repite y muestra cuántos elementos similares encontró para usar como contexto del scraper.",
-    className: "state-context",
+const LANG = document.documentElement.lang === "en" ? "en" : "es";
+
+const TEXT = {
+  es: {
+    steps: [
+      ["Elegí el contenedor repetido", "Hacé click sobre una card, fila o item del listado. La extensión detecta que se repite y muestra cuántos elementos similares encontró para usar como contexto del scraper."],
+      ["Marcá los campos que querés extraer", "Podés elegir campos como título, precio, link o cualquier texto visible. La preview se actualiza en tiempo real mientras armás la configuración."],
+      ["Confirmá cómo sigue cargando la página", "La extensión sugiere si el sitio usa scroll infinito, botón cargar más o paginación clásica, y espera cambios reales del DOM antes de seguir."],
+      ["Revisá y exportá los resultados", "Los datos quedan guardados de forma incremental en el navegador y podés exportarlos a CSV o JSON sin perder lo que ya se scrapeó."],
+    ],
+    sending: "Enviando...",
+    submit: "Pedir acceso",
+    invalidEmail: "Poné un email válido para seguir.",
+    sendError: "No se pudo enviar. Escribinos directo a support@sturdyscraper.com.",
+    numberLocale: "es-AR",
   },
-  {
-    title: "Marcá los campos que querés extraer",
-    text: "Podés elegir campos como título, precio, link o cualquier texto visible. La preview se actualiza en tiempo real mientras armás la configuración.",
-    className: "state-fields",
+  en: {
+    steps: [
+      ["Pick the repeating item", "Click a card, row or item in the list. The extension detects that it repeats and shows how many similar elements it found to use as the scraper's context."],
+      ["Click the fields you want", "Pick fields like title, price, link or any visible text. The preview updates in real time while you build the scraper."],
+      ["Confirm how the page loads more", "The extension suggests whether the site uses infinite scroll, a load more button or classic pagination, and waits for real DOM changes before moving on."],
+      ["Review and export the results", "Rows are saved incrementally in your browser and you can export them to CSV or JSON without losing what was already scraped."],
+    ],
+    sending: "Sending...",
+    submit: "Request access",
+    invalidEmail: "Enter a valid email to continue.",
+    sendError: "Couldn't send it. Email us directly at support@sturdyscraper.com.",
+    numberLocale: "en-US",
   },
-  {
-    title: "Confirmá cómo sigue cargando la página",
-    text: "La extensión sugiere si el sitio usa scroll infinito, botón cargar más o paginación clásica, y espera cambios reales del DOM antes de seguir.",
-    className: "state-pagination",
-  },
-  {
-    title: "Revisá y exportá los resultados",
-    text: "Los datos quedan guardados de forma incremental en el navegador y podés exportarlos a CSV o JSON sin perder lo que ya se scrapeó.",
-    className: "state-export",
-  },
-];
+}[LANG];
+
+const STEP_CLASSES = ["state-context", "state-fields", "state-pagination", "state-export"];
+const demoSteps = TEXT.steps.map(([title, text], i) => ({ title, text, className: STEP_CLASSES[i] }));
 
 function onScroll() {
   header?.classList.toggle("is-scrolled", window.scrollY > 12);
@@ -60,7 +71,7 @@ function animateCount() {
   function tick(now) {
     const progress = Math.min((now - start) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3);
-    countEl.textContent = Math.round(target * eased).toLocaleString("en-US");
+    countEl.textContent = Math.round(target * eased).toLocaleString(TEXT.numberLocale);
     if (progress < 1) requestAnimationFrame(tick);
   }
 
@@ -130,7 +141,7 @@ function setSubmitting(isSubmitting) {
   submitButton.classList.toggle("is-loading", isSubmitting);
   submitButton.disabled = isSubmitting;
   if (submitButtonLabel) {
-    submitButtonLabel.textContent = isSubmitting ? "Enviando..." : "Pedir acceso";
+    submitButtonLabel.textContent = isSubmitting ? TEXT.sending : TEXT.submit;
   }
 }
 
@@ -157,7 +168,7 @@ waitlistForm?.addEventListener("submit", async (event) => {
 
   if (!email || !waitlistForm.email.checkValidity()) {
     setFieldsInvalid(true);
-    showStatus("Poné un email válido para seguir.", "error");
+    showStatus(TEXT.invalidEmail, "error");
     waitlistForm.email.focus();
     return;
   }
@@ -181,10 +192,7 @@ waitlistForm?.addEventListener("submit", async (event) => {
       requestAnimationFrame(() => waitlistSuccess.classList.add("is-visible"));
     }
   } catch (err) {
-    showStatus(
-      "No se pudo enviar. Escribinos directo a support@sturdyscraper.com.",
-      "error",
-    );
+    showStatus(TEXT.sendError, "error");
   } finally {
     setSubmitting(false);
   }

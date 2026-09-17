@@ -7,34 +7,34 @@
     <meta name="description" content="Checkout seguro de Sturdy Scraper Pro, procesado por Paddle." />
     <meta name="robots" content="noindex" />
     <link rel="canonical" href="https://sturdyscraper.com/checkout" />
-    <link rel="icon" href="./favicon.png" sizes="32x32" />
-    <link rel="stylesheet" href="/styles.css?v=20260917" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" />
+    <link rel="stylesheet" href="/styles.css?v=20260917b" />
     <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
   </head>
   <body class="legal-page">
     <header class="legal-header">
       <a class="brand" href="/">
-        <img src="./logo.png" alt="" width="28" height="28" />
+        <img src="/logo.png" alt="" width="28" height="28" />
         <span>Sturdy Scraper</span>
       </a>
       <nav aria-label="Navegación">
-        <a href="/#pricing">Precios</a>
-        <a href="/refund-policy">Reembolsos</a>
-        <a href="mailto:support@sturdyscraper.com">Contacto</a>
+        <a href="/#pricing" data-i18n="navPricing">Precios</a>
+        <a href="/refund-policy" data-i18n="navRefunds">Reembolsos</a>
+        <a href="mailto:support@sturdyscraper.com" data-i18n="navContact">Contacto</a>
       </nav>
     </header>
 
     <main class="legal-container">
       <p class="eyebrow">Sturdy Scraper Pro</p>
-      <h1 id="title">Abriendo el checkout…</h1>
+      <h1 id="title" data-i18n="opening">Abriendo el checkout…</h1>
       <p id="plan-line" class="legal-date"></p>
 
       <section id="status">
-        <p>
+        <p data-i18n-html="paddle">
           El pago lo procesa <strong>Paddle</strong>, nuestro revendedor autorizado (Merchant of Record):
           ellos cobran, emiten la factura y manejan impuestos. Nosotros no vemos los datos de tu tarjeta.
         </p>
-        <p>
+        <p data-i18n-html="afterPay">
           Al terminar te llega por email una <strong>license key</strong>. La activás en la extensión desde
           <strong>⚙ Ajustes → Activá tu licencia</strong>.
         </p>
@@ -42,7 +42,7 @@
 
       <section>
         <p>
-          <button id="open" class="button primary" type="button">Abrir checkout</button>
+          <button id="open" class="button primary" type="button" data-i18n="openBtn">Abrir checkout</button>
           <a class="button secondary" id="switch" href="#">Cambiar de plan</a>
         </p>
         <p id="error" hidden></p>
@@ -54,23 +54,56 @@
       // Es público por diseño (solo sirve para abrir el checkout), pero lo carga el dueño de la cuenta.
       const PADDLE_CLIENT_TOKEN = 'live_8f4f09a39f83072e341410b26c2';
       const PLANS = {
-        monthly: { priceId: 'pri_01kyx6prke3rm228e11snntv4h', label: 'USD 9 por mes' },
-        yearly: { priceId: 'pri_01kyx6xrycvhgh0793sa8qccph', label: 'USD 79 por año (ahorrás 27%)' },
+        monthly: { priceId: 'pri_01kyx6prke3rm228e11snntv4h' },
+        yearly: { priceId: 'pri_01kyx6xrycvhgh0793sa8qccph' },
       };
 
       const params = new URLSearchParams(location.search);
+      const LANG = params.get('lang') === 'en' || (!params.get('lang') && !/^es\b/i.test(navigator.language || '')) ? 'en' : 'es';
+      const T = {
+        es: {
+          navPricing: 'Precios', navRefunds: 'Reembolsos', navContact: 'Contacto',
+          opening: 'Abriendo el checkout…', openBtn: 'Abrir checkout', ready: 'Checkout de Sturdy Scraper Pro',
+          paddle: 'El pago lo procesa <strong>Paddle</strong>, nuestro revendedor autorizado (Merchant of Record): ellos cobran, emiten la factura y manejan impuestos. Nosotros no vemos los datos de tu tarjeta.',
+          afterPay: 'Al terminar te llega por email una <strong>license key</strong>. La activás en la extensión desde <strong>⚙ Ajustes → Activá tu licencia</strong>.',
+          plan: 'Plan elegido: ', coupon: ' · cupón ', monthly: 'USD 9 por mes', yearly: 'USD 79 por año (ahorrás 27%)',
+          toYearly: 'Prefiero el plan anual', toMonthly: 'Prefiero el plan mensual',
+          errTitle: 'No pudimos abrir el checkout',
+          notReady: 'El checkout todavía no está habilitado. Escribinos a <a href="mailto:support@sturdyscraper.com">support@sturdyscraper.com</a> y te mandamos el link de pago.',
+          paddleError: 'Paddle no pudo abrir el pago. Probá de nuevo en unos minutos o escribinos a <a href="mailto:support@sturdyscraper.com">support@sturdyscraper.com</a>.',
+          loadError: 'Error cargando Paddle: ', title: 'Comprar Pro | Sturdy Scraper', success: '/gracias',
+        },
+        en: {
+          navPricing: 'Pricing', navRefunds: 'Refunds', navContact: 'Contact',
+          opening: 'Opening checkout…', openBtn: 'Open checkout', ready: 'Sturdy Scraper Pro checkout',
+          paddle: 'Payment is processed by <strong>Paddle</strong>, our authorized reseller (Merchant of Record): they charge you, issue the invoice and handle taxes. We never see your card details.',
+          afterPay: 'When you finish, you get a <strong>license key</strong> by email. Activate it in the extension from <strong>⚙ Settings → Activate your license</strong>.',
+          plan: 'Selected plan: ', coupon: ' · coupon ', monthly: 'USD 9 per month', yearly: 'USD 79 per year (save 27%)',
+          toYearly: 'Switch to the yearly plan', toMonthly: 'Switch to the monthly plan',
+          errTitle: "We couldn't open the checkout",
+          notReady: 'Checkout isn\'t available yet. Email <a href="mailto:support@sturdyscraper.com">support@sturdyscraper.com</a> and we\'ll send you a payment link.',
+          paddleError: 'Paddle couldn\'t open the payment. Try again in a few minutes or email <a href="mailto:support@sturdyscraper.com">support@sturdyscraper.com</a>.',
+          loadError: 'Error loading Paddle: ', title: 'Buy Pro | Sturdy Scraper', success: '/en/thanks',
+        },
+      }[LANG];
+      document.documentElement.lang = LANG;
+      document.title = T.title;
+      document.querySelectorAll('[data-i18n]').forEach((el) => { el.textContent = T[el.dataset.i18n]; });
+      document.querySelectorAll('[data-i18n-html]').forEach((el) => { el.innerHTML = T[el.dataset.i18nHtml]; });
+      document.querySelector('.brand').href = LANG === 'en' ? '/en/' : '/';
+      document.querySelector('[data-i18n="navPricing"]').href = LANG === 'en' ? '/en/#pricing' : '/#pricing';
       const planKey = params.get('plan') === 'yearly' ? 'yearly' : 'monthly';
       const plan = PLANS[planKey];
       const other = planKey === 'yearly' ? 'monthly' : 'yearly';
       // Cupón opcional: /checkout?plan=monthly&discount=CODIGO
       const discountCode = (params.get('discount') || '').trim().toUpperCase().replace(/[^A-Z0-9_-]/g, '').slice(0, 32);
-      document.getElementById('plan-line').textContent = 'Plan elegido: ' + plan.label + (discountCode ? ' · cupón ' + discountCode : '');
-      document.getElementById('switch').href = '?plan=' + other + (discountCode ? '&discount=' + encodeURIComponent(discountCode) : '');
+      document.getElementById('plan-line').textContent = T.plan + T[planKey] + (discountCode ? T.coupon + discountCode : '');
+      document.getElementById('switch').href = '?plan=' + other + '&lang=' + LANG + (discountCode ? '&discount=' + encodeURIComponent(discountCode) : '');
       document.getElementById('switch').textContent =
-        other === 'yearly' ? 'Prefiero el plan anual' : 'Prefiero el plan mensual';
+        other === 'yearly' ? T.toYearly : T.toMonthly;
 
       function showError(html) {
-        document.getElementById('title').textContent = 'No pudimos abrir el checkout';
+        document.getElementById('title').textContent = T.errTitle;
         const el = document.getElementById('error');
         el.innerHTML = html;
         el.hidden = false;
@@ -78,19 +111,17 @@
 
       function openCheckout() {
         if (!window.Paddle || PADDLE_CLIENT_TOKEN.startsWith('PEGAR')) {
-          showError(
-            'El checkout todavía no está habilitado. Escribinos a ' +
-              '<a href="mailto:support@sturdyscraper.com">support@sturdyscraper.com</a> y te mandamos el link de pago.',
-          );
+          showError(T.notReady);
           return;
         }
         Paddle.Checkout.open({
           items: [{ priceId: plan.priceId, quantity: 1 }],
           ...(discountCode ? { discountCode } : {}),
+          customData: { lang: LANG },
           settings: {
             displayMode: 'overlay',
-            locale: 'es',
-            successUrl: location.origin + '/gracias',
+            locale: LANG,
+            successUrl: location.origin + T.success,
           },
         });
       }
@@ -101,17 +132,14 @@
             token: PADDLE_CLIENT_TOKEN,
             eventCallback: (ev) => {
               if (ev && ev.name === 'checkout.error') {
-                showError(
-                  'Paddle no pudo abrir el pago. Probá de nuevo en unos minutos o escribinos a ' +
-                    '<a href="mailto:support@sturdyscraper.com">support@sturdyscraper.com</a>.',
-                );
+                showError(T.paddleError);
               }
             },
           });
-          document.getElementById('title').textContent = 'Checkout de Sturdy Scraper Pro';
+          document.getElementById('title').textContent = T.ready;
         }
       } catch (e) {
-        showError('Error cargando Paddle: ' + String(e && e.message ? e.message : e));
+        showError(T.loadError + String(e && e.message ? e.message : e));
       }
       document.getElementById('open').addEventListener('click', openCheckout);
       openCheckout();
