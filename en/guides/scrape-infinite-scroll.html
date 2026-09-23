@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How to Scrape Infinite Scroll Pages Without Code</title>
+    <meta name="description" content="Get every result from a page that loads more as you scroll, without code and without missing rows: why scrapers fail on infinite scroll and how to avoid it." />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://sturdyscraper.com/en/guides/scrape-infinite-scroll" />
+    <link rel="alternate" hreflang="es" href="https://sturdyscraper.com/guias/scrapear-scroll-infinito" />
+    <link rel="alternate" hreflang="en" href="https://sturdyscraper.com/en/guides/scrape-infinite-scroll" />
+    <link rel="alternate" hreflang="x-default" href="https://sturdyscraper.com/en/guides/scrape-infinite-scroll" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="How to Scrape Infinite Scroll Pages Without Code" />
+    <meta property="og:description" content="Get every result from a page that loads more as you scroll, without code and without missing rows: why scrapers fail on infinite scroll and how to avoid it." />
+    <meta property="og:url" content="https://sturdyscraper.com/en/guides/scrape-infinite-scroll" />
+    <meta property="og:image" content="https://sturdyscraper.com/og-image-en.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="stylesheet" href="/styles.css?v=20260917c" />
+    <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Article", "headline": "How to scrape infinite scroll pages without coding", "description": "Get every result from a page that loads more as you scroll, without code and without missing rows: why scrapers fail on infinite scroll and how to avoid it.", "inLanguage": "en", "datePublished": "2026-09-23", "dateModified": "2026-09-23", "mainEntityOfPage": "https://sturdyscraper.com/en/guides/scrape-infinite-scroll", "image": ["https://sturdyscraper.com/img/en/detect-similar-items-1280.webp", "https://sturdyscraper.com/img/en/pagination-1280.webp", "https://sturdyscraper.com/img/en/export-data-1280.webp"], "author": {"@type": "Person", "name": "Sebastián Martini"}, "publisher": {"@type": "Organization", "name": "Sturdy Scraper", "logo": {"@type": "ImageObject", "url": "https://sturdyscraper.com/logo.png"}}}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many rows can I get for free?", "acceptedAnswer": {"@type": "Answer", "text": "The Free plan has every feature up to 200 rows per scrape, with no account or card. Pro (USD 9 per month) removes the limit."}}, {"@type": "Question", "name": "What if the site is slow to load?", "acceptedAnswer": {"@type": "Answer", "text": "The extension waits for new items to appear on the page instead of a fixed delay, so a slow site doesn't leave rows out."}}, {"@type": "Question", "name": "Does it work with “Load more” buttons?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, that's another pagination mode: the extension clicks the button and waits for the list to grow before moving on."}}]}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Sturdy Scraper", "item": "https://sturdyscraper.com/en/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://sturdyscraper.com/en/guides/scrape-infinite-scroll"}]}]</script>
+    <style>.guide-shot{margin:1rem 0 0}.guide-shot img{width:100%;height:auto;border-radius:12px;border:1px solid rgba(255,255,255,.1)}.alt-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}.legal-container details{border-top:1px solid rgba(127,127,127,.25);padding:.8rem 0}.legal-container summary{cursor:pointer;font-weight:600}</style>
+  </head>
+  <body class="legal-page">
+    <header class="legal-header">
+      <a class="brand" href="/en/">
+        <img src="/logo-56.webp" alt="" width="28" height="28" />
+        <span>Sturdy Scraper</span>
+      </a>
+      <nav aria-label="Navigation">
+        <a href="/en/#pricing">Pricing</a>
+        <a href="/en/#faq">FAQ</a>
+        <a href="mailto:support@sturdyscraper.com">Contact</a>
+        <a href="/guias/scrapear-scroll-infinito" hreflang="es" lang="es">ES</a>
+      </nav>
+    </header>
+
+    <main class="legal-container">
+      <p class="eyebrow">Guide</p>
+      <h1>How to scrape infinite scroll pages without coding</h1>
+      <p class="legal-date">Updated: September 23, 2026</p>
+      <section>
+        <h2>Why infinite scroll breaks most scrapers</h2>
+        <p>On an infinite scroll page the results aren't all in the HTML: they show up in batches as you scroll. Many extensions handle this by scrolling and waiting a fixed time, say two seconds. If the site takes three, the next batch hasn't arrived yet, the scraper decides the list is over, and you get half the rows without any warning.</p><p>The opposite problem is just as common: when the page redraws the list as you scroll, the scraper reads the same items again and the export comes out full of duplicates.</p>
+      </section>
+      <section>
+        <h2>1. Pick one item in the list</h2>
+        <p>Open the page and in Sturdy Scraper click <strong>New scraper → Select container</strong>. Click one result card or row: the extension highlights every similar one and tells you how many it sees right now. Then add your columns (title, price, link, image) by clicking inside that same card.</p>
+        <figure class="guide-shot"><img src="/img/en/detect-similar-items-640.webp" srcset="/img/en/detect-similar-items-640.webp 640w, /img/en/detect-similar-items-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="1. Pick one item in the list" /></figure>
+      </section>
+      <section>
+        <h2>2. Choose “Infinite scroll” as pagination</h2>
+        <p>In the pagination step the extension tries to detect how the page loads more results. If it doesn't, pick <strong>Infinite scroll</strong> yourself. Set a page limit for a short first run.</p><p>While it runs, instead of waiting a fixed time, the extension watches the page and only moves on when new items actually appear. If no new content shows up after several tries, it stops and tells you so: <em>“the page stopped loading more”</em>.</p>
+        <figure class="guide-shot"><img src="/img/en/pagination-640.webp" srcset="/img/en/pagination-640.webp 640w, /img/en/pagination-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="2. Choose “Infinite scroll” as pagination" /></figure>
+      </section>
+      <section>
+        <h2>Lists that scroll inside a panel</h2>
+        <p>Some sites don't scroll the whole page: the list lives in a panel with its own scrollbar (maps, inboxes, side panels). Sturdy Scraper finds that panel and scrolls inside it, so that case works too.</p>
+      </section>
+      <section>
+        <h2>No fake duplicates, no missing rows</h2>
+        <p>Items read again while scrolling aren't repeated in the export. And if the list really contains two identical items (two products with the same name and price), both are exported: only what was already read is skipped.</p>
+      </section>
+      <section>
+        <h2>3. Export</h2>
+        <p>When it's done, export to CSV for Excel or Google Sheets, or to JSON/NDJSON to process it with another tool. Large exports are written to disk in chunks without filling the browser's memory.</p>
+        <figure class="guide-shot"><img src="/img/en/export-data-640.webp" srcset="/img/en/export-data-640.webp 640w, /img/en/export-data-1280.webp 1280w" sizes="(max-width: 760px) 92vw, 720px" width="1280" height="800" loading="lazy" decoding="async" alt="3. Export" /></figure>
+      </section>
+      <section>
+        <h2>Before you start</h2>
+        <p>Use it on public data and follow each site's terms. If a site requires logging in or blocks automated access, don't push it. Everything you extract stays in your browser and never goes through a server.</p>
+      </section>
+      <div class="alt-cta">
+        <a class="button primary" href="https://chromewebstore.google.com/detail/acpobeocodokdmfgbgakpmpabbhoekan?hl=en&utm_source=sturdyscraper.com&utm_medium=guide-scroll">Add to Chrome — it's free</a>
+        <a class="button secondary" href="/en/#pricing">See pricing</a>
+      </div>
+      <section id="faq">
+        <h2>FAQ</h2>
+        <details><summary>How many rows can I get for free?</summary><p>The Free plan has every feature up to 200 rows per scrape, with no account or card. Pro (USD 9 per month) removes the limit.</p></details><details><summary>What if the site is slow to load?</summary><p>The extension waits for new items to appear on the page instead of a fixed delay, so a slow site doesn't leave rows out.</p></details><details><summary>Does it work with “Load more” buttons?</summary><p>Yes, that's another pagination mode: the extension clicks the button and waits for the list to grow before moving on.</p></details>
+      </section>
+      <section>
+        <h2>Keep reading</h2>
+        <p><a href="/en/guides/website-data-to-excel">Guide: website data to Excel</a> · <a href="/en/instant-data-scraper-alternative">Instant Data Scraper alternative</a> · <a href="/en/guides/competitor-price-monitoring">Guide: competitor price monitoring</a> · <a href="/en/changelog">Changelog</a></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Sturdy Scraper</strong>
+        <span>Local-first web scraping for Chrome.</span>
+        <span>Made by Sebastián Martini · Argentina</span>
+      </div>
+      <nav aria-label="Footer">
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/refund-policy">Refunds</a>
+        <a href="mailto:support@sturdyscraper.com">Contact</a>
+      </nav>
+    </footer>
+  </body>
+</html>
